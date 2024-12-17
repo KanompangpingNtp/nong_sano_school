@@ -1,4 +1,3 @@
-<!-- resources/views/components/header.blade.php -->
 <style>
     header {
         background-image: url('{{ asset('images/pages/1/header-bg.png') }}');
@@ -172,7 +171,7 @@
         text-shadow: 4px 2px 4px rgba(255, 255, 255, 0.829);
     }
 
-    main {
+    .bg-page1 {
         background-image: url('{{ asset('images/pages/1/bg-page1.png') }}');
         background-size: cover;
         background-position: center;
@@ -211,7 +210,7 @@
     </div>
 </header>
 <!-- Content Section -->
-<main class="d-flex align-items-end justify-content-center">
+<main class="d-flex align-items-end justify-content-center bg-page1">
     <div
         class="container d-flex flex-wrap align-items-center justify-content-evenly bg-menu font-sarabun-bold pb-2 pt-3 column-gap-3">
         <!-- แถวแรกจะเป็น 2 คอลัมน์เมื่อหน้าจอ < xl -->
