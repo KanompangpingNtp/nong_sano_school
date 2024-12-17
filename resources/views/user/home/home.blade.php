@@ -9,4 +9,5 @@
     @include('user.home.components.page-6')
     @include('user.home.components.page-7')
     @include('user.home.components.page-8')
+    @include('user.home.components.page-9')
 @endsection
