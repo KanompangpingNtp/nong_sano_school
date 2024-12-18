@@ -17,10 +17,10 @@
         /* กระจาย Card ให้มีระยะห่างเท่ากัน */
         flex-wrap: wrap;
         /* ทำให้ Card เลื่อนลงมาเมื่อพื้นที่ไม่พอ */
-        gap: 2rem;
+        gap: 1rem;
         /* ระยะห่างระหว่าง Card */
         width: 100%;
-        max-width: 1200px;
+        max-width: 1100px;
         /* ควบคุมความกว้างสูงสุดของ Card Container */
     }
 
@@ -29,7 +29,7 @@
         border-radius: 15px;
         overflow: hidden;
         transition: transform 0.3s ease;
-        width: 310px;
+        width: 300px;
         /* ความกว้างคงที่ของ Card */
         max-width: 100%;
     }
@@ -81,21 +81,21 @@
     <!-- ส่วนแสดง Card -->
     <div class="custom-card-container">
         <!-- Card 1 -->
-        <div class="custom-card card-rotate-left d-none d-lg-block">
-            <img src="https://via.placeholder.com/310x300" alt="Card Image 1">
+        <div class="custom-card card-rotate-left d-lg-block">
+            <img src="https://via.placeholder.com/300x260" alt="Card Image 1">
         </div>
         <!-- Card 2 -->
-        <div class="custom-card card-rotate-normal d-none d-lg-block">
-            <img src="https://via.placeholder.com/310x300" alt="Card Image 2">
+        <div class="custom-card card-rotate-normal d-lg-block">
+            <img src="https://via.placeholder.com/300x260" alt="Card Image 2">
         </div>
         <!-- Card 3 -->
-        <div class="custom-card card-rotate-right d-none d-xl-block">
-            <img src="https://via.placeholder.com/310x300" alt="Card Image 3">
+        <div class="custom-card card-rotate-right d-xl-block">
+            <img src="https://via.placeholder.com/300x260" alt="Card Image 3">
         </div>
     </div>
 
     <!-- ส่วนแสดงจำนวนผู้เข้าชมด้านล่าง -->
-    <div class="container number-visitor d-flex flex-column flex-lg-row justify-content-around align-items-center"
+    <div class="container number-visitor d-flex flex-column flex-lg-row justify-content-around align-items-center d-none d-lg-flex"
         style="margin-top: 10rem;">
         <div class="pe-4 border-start-s">
             จำนวนผู้เข้าชมเว็บไซต์ <br>
