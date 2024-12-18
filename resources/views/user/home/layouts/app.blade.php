@@ -127,6 +127,53 @@
             font-size: 32px;
             line-height: 1;
         }
+
+        .border-left-right-footer {
+            border-left: 3px solid rgb(255, 208, 91);
+            border-right: 3px solid rgb(255, 208, 91);
+        }
+
+        /* ซ่อน border-left และ border-right เมื่อหน้าจอเล็กกว่า lg */
+        @media (max-width: 1200px) {
+            .border-left-right-footer {
+                border-left: none;
+                border-right: none;
+            }
+
+            .logo-footer {
+                margin-top: 20px;
+                height: 180px;
+                filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.6));
+                /* แก้ไขค่าที่ใช้ */
+                z-index: 2;
+            }
+
+            .font-title-footer {
+                text-shadow: 4px 2px 4px rgba(0, 0, 0, 0.6);
+                font-size: 60px;
+                /* ขนาดฟอนต์พื้นฐาน */
+                line-height: 1;
+                position: relative;
+            }
+
+            /* สำหรับ .font-title-subheader */
+            .font-title-subfooter {
+                text-shadow: 4px 2px 4px rgba(0, 0, 0, 0.6);
+                font-size: 30px;
+                line-height: 1;
+            }
+
+            .img-footer {
+                width: auto;
+                height: 50px;
+            }
+
+            .font-work-footer {
+                text-shadow: 4px 2px 4px rgba(0, 0, 0, 0.6);
+                font-size: 40px;
+                line-height: 1;
+            }
+        }
     </style>
     @yield('head')
 </head>
@@ -134,7 +181,8 @@
 <body class="d-flex flex-column">
     @yield('content')
     <footer class="text-white">
-        <div class="container d-flex flex-column flex-xl-row align-items-center justify-content-center h-100 row-gap-5">
+        <div
+            class="container d-flex flex-column flex-xl-row align-items-center justify-content-center h-100 row-gap-5 py-5">
             <!-- ส่วนที่ 1 -->
             <div class="flex-fill d-flex justify-content-end align-items-center me-4">
                 <img src="{{ asset('images/pages/1/logo_schools.png') }}" alt="logo" class="logo-footer">
@@ -154,7 +202,7 @@
 
             <!-- ส่วนที่ 3 -->
             <div
-                class="flex-fill font-work-footer  d-flex justify-content-center align-items-center text-center h-100 me-4 font-sarabun-bold">
+                class="flex-fill font-work-footer  d-flex justify-content-center align-items-center text-center h-100 me-4 font-sarabun-bold border-left-right-footer">
                 เปิดทำการ <br> วันจันทร์ - วันศุกร์ <br> 7.00 น. - 16.30 น.
             </div>
             <!-- ส่วนที่ 4 -->
