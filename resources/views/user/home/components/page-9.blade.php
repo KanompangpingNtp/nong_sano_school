@@ -102,27 +102,27 @@
             Number of website visitors
         </div>
         <div>
-            <div>score</div>
+            <div>0</div>
             <div>ขณะนี้</div>
         </div>
         <div>
-            <div>score</div>
+            <div>0</div>
             <div>วันนี้</div>
         </div>
         <div>
-            <div>score</div>
+            <div>0</div>
             <div>สัปดาห์นี้</div>
         </div>
         <div>
-            <div>score</div>
+            <div>0</div>
             <div>เดือนนี้</div>
         </div>
         <div>
-            <div>score</div>
+            <div>0</div>
             <div>ปีนี้</div>
         </div>
         <div class="ps-4 border-end-s">
-            <div>score</div>
+            <div>0</div>
             <div>ทั้งหมด</div>
         </div>
     </div>
