@@ -15,7 +15,7 @@ use App\Http\Controllers\AdminController;
 */
 
 Route::get('/', function () {
-    return view('user.home.home');
+    return view('user.all-data-type.index');
 });
 
 Route::get('/classroom/page', [AdminController::class, 'ClassRoomPage'])->name('ClassRoomPage');
