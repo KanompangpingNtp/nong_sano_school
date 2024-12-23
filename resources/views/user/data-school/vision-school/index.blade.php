@@ -69,7 +69,7 @@
         /* ทำให้รูปภาพเต็มความกว้าง */
     }
 </style>
-@section('title', ' รายละเอียดข่าวประชาสัมพันธ์')
+@section('title', ' วิสัยทัศน์')
 @section('content')
     <div class="bg-press-release my-5">
         <div class="container bg-view-detail">

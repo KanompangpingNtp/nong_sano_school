@@ -102,28 +102,25 @@
                     <div class="tab-pane fade show active" id="tab1-content" role="tabpanel" aria-labelledby="tab1-tab">
                         <div class="p-4 card-text">
                             <div class="text-center mb-5">
-                                <img src="{{ asset('images/data-school/identity/identity.png') }}" alt="data-school"
+                                <img src="{{ asset('images/data-school/goal/goal.png') }}" alt="data-school"
                                     class="img-fluid">
                             </div>
-                            <p class="text-titel font-sarabun-bold text-center lh-1" style="font-size: 45px;">
-                                ไหว้สวย มีจิตสาธารณะ
-                            </p>
                             <div class="card shadow-sm mt-5 unique-card">
-                                <img src="{{ asset('images/data-school/identity/identity-3.png') }}"
-                                    class="card-img-top unique-img" alt="Image">
+                                <img src="{{ asset('images/data-school/goal/goal-1.png') }}" class="card-img-top unique-img"
+                                    alt="Image">
                             </div>
 
                             <div
                                 class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-2 row-cols-xl-2 g-3 mt-2 text-center">
                                 <div class="col">
                                     <div class="card h-100 shadow-sm">
-                                        <img src="{{ asset('images/data-school/identity/identity-1.jpg') }}"
+                                        <img src="{{ asset('images/data-school/goal/goal-2.jpg') }}"
                                             class="card-img-top img-fit" alt="Image">
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="card h-100 shadow-sm">
-                                        <img src="{{ asset('images/data-school/identity/identity-2.jpg') }}"
+                                        <img src="{{ asset('images/data-school/goal/goal-3.jpg') }}"
                                             class="card-img-top img-fit" alt="Image">
                                     </div>
                                 </div>
