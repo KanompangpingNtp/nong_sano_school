@@ -7,99 +7,128 @@
         background-position: center;
         background-repeat: no-repeat;
     }
+
+    .card-link {
+        text-decoration: none;
+    }
+
+    .hover-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .hover-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+    }
 </style>
 
-@section('title', ' อาคารและสถานที่')
+@section('title', 'ข้อมูลทั่วไป')
 @section('content')
     <div class="bg-press-release py-5">
         <div class="container my-4">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
-                <!-- หัวข้อที่ 1 -->
+                <!-- การ์ดประวัติโรงเรียน -->
                 <div class="col">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title text-primary font-sarabun-bold fs-4">หัวข้อที่ 1</h5>
-                            <p class="card-text fs-5">นี่คือรายละเอียดของหัวข้อที่ 1.</p>
-                            <a href="#" class="btn btn-primary mt-auto">ดูเพิ่มเติม</a>
+                    <a href="/history" class="card-link">
+                        <div class="card h-100 shadow-sm text-center hover-card">
+                            <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                                <i class="fa-solid fa-university fa-3x text-primary mb-3"></i>
+                                <h5 class="card-title text-primary font-sarabun-bold fs-3">ประวัติโรงเรียน</h5>
+                                <p class="card-text fs-4">ประวัติความเป็นมาของโรงเรียน.</p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
 
-                <!-- หัวข้อที่ 2 -->
+                <!-- การ์ดวิศัยทัศน์ -->
                 <div class="col">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title text-primary font-sarabun-bold fs-4">หัวข้อที่ 2</h5>
-                            <p class="card-text fs-5">นี่คือรายละเอียดของหัวข้อที่ 2.</p>
-                            <a href="#" class="btn btn-primary mt-auto">ดูเพิ่มเติม</a>
+                    <a href="/vision" class="card-link">
+                        <div class="card h-100 shadow-sm text-center hover-card">
+                            <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                                <i class="fa-solid fa-eye fa-3x text-primary mb-3"></i>
+                                <h5 class="card-title text-primary font-sarabun-bold fs-3">วิศัยทัศน์</h5>
+                                <p class="card-text fs-4">วิสัยทัศน์ของโรงเรียนในการพัฒนาอนาคต.</p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
 
-                <!-- หัวข้อที่ 3 -->
+                <!-- การ์ดพันธกิจ -->
                 <div class="col">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title text-primary font-sarabun-bold fs-4">หัวข้อที่ 3</h5>
-                            <p class="card-text fs-5">นี่คือรายละเอียดของหัวข้อที่ 3.</p>
-                            <a href="#" class="btn btn-primary mt-auto">ดูเพิ่มเติม</a>
+                    <a href="/mission" class="card-link">
+                        <div class="card h-100 shadow-sm text-center hover-card">
+                            <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                                <i class="fa-solid fa-bullseye fa-3x text-primary mb-3"></i>
+                                <h5 class="card-title text-primary font-sarabun-bold fs-3">พันธกิจ</h5>
+                                <p class="card-text fs-4">การส่งเสริมการศึกษาของโรงเรียน.</p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
 
-                <!-- หัวข้อที่ 4 -->
+                <!-- การ์ดเอกลักษณ์ -->
                 <div class="col">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title text-primary font-sarabun-bold fs-4">หัวข้อที่ 4</h5>
-                            <p class="card-text fs-5">นี่คือรายละเอียดของหัวข้อที่ 4.</p>
-                            <a href="#" class="btn btn-primary mt-auto">ดูเพิ่มเติม</a>
+                    <a href="/identity" class="card-link">
+                        <div class="card h-100 shadow-sm text-center hover-card">
+                            <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                                <i class="fa-solid fa-gem fa-3x text-primary mb-3"></i>
+                                <h5 class="card-title text-primary font-sarabun-bold fs-3">เอกลักษณ์</h5>
+                                <p class="card-text fs-4">เอกลักษณ์ของโรงเรียน.</p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
 
-                <!-- หัวข้อที่ 5 -->
+                <!-- การ์ดอัตลักษณ์ -->
                 <div class="col">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title text-primary font-sarabun-bold fs-4">หัวข้อที่ 5</h5>
-                            <p class="card-text fs-5">นี่คือรายละเอียดของหัวข้อที่ 5.</p>
-                            <a href="#" class="btn btn-primary mt-auto">ดูเพิ่มเติม</a>
+                    <a href="/characteristics" class="card-link">
+                        <div class="card h-100 shadow-sm text-center hover-card">
+                            <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                                <i class="fa-solid fa-id-card fa-3x text-primary mb-3"></i>
+                                <h5 class="card-title text-primary font-sarabun-bold fs-3">อัตลักษณ์</h5>
+                                <p class="card-text fs-4">อัตลักษณ์ของโรงเรียน.</p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
 
-                <!-- หัวข้อที่ 6 -->
+                <!-- การ์ดเป้าหมาย -->
                 <div class="col">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title text-primary font-sarabun-bold fs-4">หัวข้อที่ 6</h5>
-                            <p class="card-text fs-5">นี่คือรายละเอียดของหัวข้อที่ 6.</p>
-                            <a href="#" class="btn btn-primary mt-auto">ดูเพิ่มเติม</a>
+                    <a href="/goals" class="card-link">
+                        <div class="card h-100 shadow-sm text-center hover-card">
+                            <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                                <i class="fa-solid fa-bullhorn fa-3x text-primary mb-3"></i>
+                                <h5 class="card-title text-primary font-sarabun-bold fs-3">เป้าหมาย</h5>
+                                <p class="card-text fs-4">เป้าหมายหลักของโรงเรียนในอนาคต.</p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
 
-                <!-- หัวข้อที่ 7 -->
+                <!-- การ์ดตราสัญลักษณ์ -->
                 <div class="col">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title text-primary font-sarabun-bold fs-4">หัวข้อที่ 7</h5>
-                            <p class="card-text fs-5">นี่คือรายละเอียดของหัวข้อที่ 7.</p>
-                            <a href="#" class="btn btn-primary mt-auto">ดูเพิ่มเติม</a>
+                    <a href="/logo" class="card-link">
+                        <div class="card h-100 shadow-sm text-center hover-card">
+                            <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                                <i class="fa-solid fa-shield-alt fa-3x text-primary mb-3"></i>
+                                <h5 class="card-title text-primary font-sarabun-bold fs-3">ตราสัญลักษณ์</h5>
+                                <p class="card-text fs-4">ตราสัญลักษณ์ของโรงเรียน.</p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
 
-                <!-- หัวข้อที่ 8 -->
+                <!-- การ์ดสีประจำโรงเรียน -->
                 <div class="col">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title text-primary font-sarabun-bold fs-4">หัวข้อที่ 8</h5>
-                            <p class="card-text fs-5">นี่คือรายละเอียดของหัวข้อที่ 8.</p>
-                            <a href="#" class="btn btn-primary mt-auto">ดูเพิ่มเติม</a>
+                    <a href="/school-color" class="card-link">
+                        <div class="card h-100 shadow-sm text-center hover-card">
+                            <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                                <i class="fa-solid fa-palette fa-3x text-primary mb-3"></i>
+                                <h5 class="card-title text-primary font-sarabun-bold fs-3">สีประจำโรงเรียน</h5>
+                                <p class="card-text fs-4">ความหมายสีประจำโรงเรียน.</p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>
