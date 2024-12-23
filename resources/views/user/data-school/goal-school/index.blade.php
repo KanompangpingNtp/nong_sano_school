@@ -78,7 +78,7 @@
     }
 
     .unique-img {
-        height: 300px;
+        height: 400px;
         /* กำหนดความสูงของรูปภาพเป็น 300px (สามารถปรับได้) */
         object-fit: cover;
         /* ครอบคลุมพื้นที่การแสดงผล */
@@ -87,7 +87,7 @@
     }
 
     .unique-card {
-        max-width: 400px;
+        max-width: 700px;
         /* (ตัวเลือก) จำกัดความกว้างของการ์ดนี้ */
         margin: auto;
         /* (ตัวเลือก) จัดให้อยู่กึ่งกลาง */
@@ -105,13 +105,13 @@
                                 <img src="{{ asset('images/data-school/goal/goal.png') }}" alt="data-school"
                                     class="img-fluid">
                             </div>
-                            <div class="card shadow-sm mt-5 unique-card">
-                                <img src="{{ asset('images/data-school/goal/goal-1.png') }}" class="card-img-top unique-img"
-                                    alt="Image">
+                            <div class="card shadow-sm mt-4 unique-card">
+                                <img src="{{ asset('images/data-school/goal/goal-1.jpg') }}"
+                                    class="card-img-top unique-img shadow" alt="Image">
                             </div>
 
                             <div
-                                class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-2 row-cols-xl-2 g-3 mt-2 text-center">
+                                class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-3 g-3 mt-2 text-center">
                                 <div class="col">
                                     <div class="card h-100 shadow-sm">
                                         <img src="{{ asset('images/data-school/goal/goal-2.jpg') }}"
@@ -121,6 +121,30 @@
                                 <div class="col">
                                     <div class="card h-100 shadow-sm">
                                         <img src="{{ asset('images/data-school/goal/goal-3.jpg') }}"
+                                            class="card-img-top img-fit" alt="Image">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card h-100 shadow-sm">
+                                        <img src="{{ asset('images/data-school/goal/goal-4.jpg') }}"
+                                            class="card-img-top img-fit" alt="Image">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card h-100 shadow-sm">
+                                        <img src="{{ asset('images/data-school/goal/goal-5.jpg') }}"
+                                            class="card-img-top img-fit" alt="Image">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card h-100 shadow-sm">
+                                        <img src="{{ asset('images/data-school/goal/goal-6.jpg') }}"
+                                            class="card-img-top img-fit" alt="Image">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card h-100 shadow-sm">
+                                        <img src="{{ asset('images/data-school/goal/goal-7.jpg') }}"
                                             class="card-img-top img-fit" alt="Image">
                                     </div>
                                 </div>
