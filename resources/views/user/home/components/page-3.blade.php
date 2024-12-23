@@ -166,16 +166,40 @@
     .card-text {
         flex-grow: 1;
         background-color: #e3e3e3;
-        /* ขยายพื้นที่ข้อความให้เต็มพื้นที่ที่เหลือ */
-        display: flex;
-        justify-content: center;
-        /* จัดข้อความให้อยู่กลางแนวนอน */
-        align-items: center;
-        /* จัดข้อความให้อยู่กลางแนวตั้ง */
+        display: -webkit-box;
+        /* ใช้ Box Layout เพื่อรองรับ multi-line ellipsis */
         font-size: 30px;
         border-radius: 15px;
         color: #333;
         padding: 10px;
+
+        /* ตัดข้อความเมื่อเกิน 2 บรรทัด */
+        width: 100%;
+        /* กำหนดความกว้าง */
+        line-height: 1.2;
+        /* ระยะห่างระหว่างบรรทัด */
+        max-height: calc(1.5em * 2);
+        /* กำหนดความสูงสำหรับ 2 บรรทัด */
+        overflow: hidden;
+        /* ซ่อนข้อความที่เกิน */
+        text-overflow: ellipsis;
+        /* เพิ่ม ... */
+        -webkit-line-clamp: 2;
+        /* แสดงได้ 2 บรรทัด */
+        -webkit-box-orient: vertical;
+        /* ตั้งค่าการจัดกล่องให้เป็นแนวตั้ง */
+        white-space: normal;
+        /* อนุญาตให้ข้อความขึ้นบรรทัดใหม่ */
+    }
+
+
+    .custom-text-limit {
+        max-height: calc(1.5em * 2);
+        /* จำกัดความสูงไว้เท่ากับ 2 บรรทัด */
+        overflow: hidden;
+        /* ซ่อนข้อความที่เกินพื้นที่ */
+        text-overflow: ellipsis;
+        /* เพิ่ม ... เมื่อข้อความเกิน */
     }
 
     @media (min-width: 992px) {
@@ -274,14 +298,18 @@
                     <img src="{{ asset('images/pages/3/pin.png') }}" alt="pin" class="pin-icon">
                     <div class="card-image"></div>
                     <div class="card-text">
-                        Card 1
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquid quasi ipsa pariatur.
+                        Perferendis ab, praesentium sunt facere nostrum fugit similique esse cupiditate ipsam suscipit
+                        impedit eligendi dolores, dolorum dolor voluptas?
                     </div>
                 </div>
                 <div class="card w-100 w-lg-50">
                     <img src="{{ asset('images/pages/3/pin.png') }}" alt="pin" class="pin-icon">
                     <div class="card-image"></div>
                     <div class="card-text">
-                        Card 2
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquid quasi ipsa pariatur.
+                        Perferendis ab, praesentium sunt facere nostrum fugit similique esse cupiditate ipsam suscipit
+                        impedit eligendi dolores, dolorum dolor voluptas?
                     </div>
                 </div>
             </div>

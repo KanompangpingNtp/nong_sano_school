@@ -125,16 +125,30 @@
     .card-egiht-text {
         flex-grow: 1;
         background-color: #e3e3e3;
-        /* ขยายพื้นที่ข้อความให้เต็มพื้นที่ที่เหลือ */
-        display: flex;
-        justify-content: center;
-        /* จัดข้อความให้อยู่กลางแนวนอน */
-        align-items: center;
-        /* จัดข้อความให้อยู่กลางแนวตั้ง */
+        display: -webkit-box;
+        /* ใช้ Box Layout เพื่อรองรับ multi-line ellipsis */
         font-size: 30px;
         border-radius: 15px;
         color: #333;
         padding: 10px;
+
+        /* ตัดข้อความเมื่อเกิน 2 บรรทัด */
+        width: 100%;
+        /* กำหนดความกว้าง */
+        line-height: 1.5;
+        /* ระยะห่างระหว่างบรรทัด */
+        max-height: calc(1.5em * 2);
+        /* กำหนดความสูงสำหรับ 2 บรรทัด */
+        overflow: hidden;
+        /* ซ่อนข้อความที่เกิน */
+        text-overflow: ellipsis;
+        /* เพิ่ม ... */
+        -webkit-line-clamp: 2;
+        /* แสดงได้ 2 บรรทัด */
+        -webkit-box-orient: vertical;
+        /* ตั้งค่าการจัดกล่องให้เป็นแนวตั้ง */
+        white-space: normal;
+        /* อนุญาตให้ข้อความขึ้นบรรทัดใหม่ */
     }
 
     .comic-button-eight {
