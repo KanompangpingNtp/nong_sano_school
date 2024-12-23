@@ -202,18 +202,20 @@
                 margin-left: 15px;
             }
         }
+
     </style>
 </head>
 
 <body>
 
     @if ($message = Session::get('success'))
-        <script>
-            Swal.fire({
-                icon: 'success',
-                title: '{{ $message }}',
-            })
-        </script>
+    <script>
+        Swal.fire({
+            icon: 'success'
+            , title: '{{ $message }}'
+        , })
+
+    </script>
     @endif
 
     <div class="container-fluid d-flex">
@@ -227,15 +229,27 @@
                     ปิดเมนู
                 </a>
             </div>
-                <!-- เมนูที่สามารถคลิกเพื่อเปิดตัวเลือกเพิ่มเติม -->
-                <div class="nav-item">
-                    <a class="nav-link font-sarabun-bold toggle-collapse" href="">
-                       หน้าหลัก
-                    </a>
-                    <a class="nav-link font-sarabun-bold toggle-collapse" href="{{ route('ClassRoomPage') }}">
-                        จัดการชั้นปีการศึกษา
-                     </a>
-                    {{-- <a class="nav-link font-sarabun-bold toggle-collapse" href="javascript:void(0)"
+            <!-- เมนูที่สามารถคลิกเพื่อเปิดตัวเลือกเพิ่มเติม -->
+            <div class="nav-item">
+                <a class="nav-link font-sarabun-bold toggle-collapse" href="">
+                    หน้าหลัก
+                </a>
+
+                <hr>
+
+                <a class="nav-link font-sarabun-bold toggle-collapse" href="{{ route('PressReleaseHome') }}">
+                    จัดการข่าวประชาสัมพันธ์
+                </a>
+                <a class="nav-link font-sarabun-bold toggle-collapse" href="{{ route('ActivityHome') }}">
+                    จัดการกิจกรรม
+                </a>
+                <a class="nav-link font-sarabun-bold toggle-collapse" href="{{ route('ProcurementHome') }}">
+                    ประกาศจัดซื้อจัดจ้าง
+                </a>
+                <a class="nav-link font-sarabun-bold toggle-collapse" href="{{ route('ProcurementResultsHome') }}">
+                    ผลจัดซื้อจัดจ้าง
+                </a>
+                {{-- <a class="nav-link font-sarabun-bold toggle-collapse" href="javascript:void(0)"
                         data-bs-toggle="collapse" data-bs-target="#moreOptions1">
                         Menu
                     </a>
@@ -251,7 +265,7 @@
                         </div>
                     </div> --}}
 
-                </div>
+            </div>
 
         </div>
     </div>
@@ -273,29 +287,28 @@
 
                 <!-- ส่วนขวา -->
                 @if (Auth::check())
-                    <div class="dropdown ms-auto">
-                        <button class="btn btn-outline-primary dropdown-toggle" type="button" id="profileDropdown"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fa-solid fa-user"></i> {{ Auth::user()->name }}
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
-                            <li>
-                                <form action="{{ route('logout') }}" method="POST" style="display: inline;">
-                                    @csrf
-                                    <button class="dropdown-item fs-3" type="submit">ออกจากระบบ</button>
-                                </form>
-                            </li>
-                        </ul>
-                    </div>
+                <div class="dropdown ms-auto">
+                    <button class="btn btn-outline-primary dropdown-toggle" type="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa-solid fa-user"></i> {{ Auth::user()->name }}
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                        <li>
+                            <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+                                @csrf
+                                <button class="dropdown-item fs-3" type="submit">ออกจากระบบ</button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
                 @else
-                    <div class="d-flex justify-content-end column-gap-3 me-3">
-                        <a class="btn btn-outline-primary" href="">
-                            <i class="fa-solid fa-lock-open"></i> เข้าสู่ระบบ
-                        </a>
-                        <a class="btn btn-outline-primary" href="">
-                            <i class="fa-solid fa-user"></i> สมัครใช้งาน
-                        </a>
-                    </div>
+                <div class="d-flex justify-content-end column-gap-3 me-3">
+                    <a class="btn btn-outline-primary" href="">
+                        <i class="fa-solid fa-lock-open"></i> เข้าสู่ระบบ
+                    </a>
+                    <a class="btn btn-outline-primary" href="">
+                        <i class="fa-solid fa-user"></i> สมัครใช้งาน
+                    </a>
+                </div>
                 @endif
             </div>
         </nav>
@@ -326,6 +339,7 @@
             navbar.classList.toggle('collapsed');
             content.classList.toggle('collapsed');
         });
+
     </script>
 
     <script>
@@ -352,6 +366,7 @@
                 });
             });
         });
+
     </script>
 </body>
 
