@@ -19,7 +19,7 @@ use App\Http\Controllers\ProcurementResultsController;
 */
 
 Route::get('/', function () {
-    return view('user.data-school.contact-school.index');
+    return view('user.data-school.index');
 });
 
 // Route::get('/classroom/page', [AdminController::class, 'ClassRoomPage'])->name('ClassRoomPage');
