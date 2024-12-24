@@ -8,6 +8,7 @@ use App\Models\PostDetail;
 use App\Models\PostPdf;
 use App\Models\PostPhoto;
 use App\Models\PostVideo;
+use Illuminate\Support\Facades\Storage;
 
 class PressReleaseController extends Controller
 {
@@ -103,11 +104,47 @@ class PressReleaseController extends Controller
         return redirect()->back()->with('success', 'โพสถูกเพิ่มแล้ว!');
     }
 
+    // public function PressReleaseDelete($id)
+    // {
+    //     $postDetail = PostDetail::findOrFail($id);
+    //     $postDetail->delete();
+
+    //     return redirect()->back()->with('success', 'Post deleted successfully!');
+    // }
     public function PressReleaseDelete($id)
     {
-        $postDetail = PostDetail::findOrFail($id);
+        $postDetail = PostDetail::find($id);
+
+        if (!$postDetail) {
+            return redirect()->back()->with('error', 'ไม่พบโพสที่ต้องการลบ');
+        }
+
+        $postPhotos = PostPhoto::where('post_detail_id', $id)->get();
+        foreach ($postPhotos as $postPhoto) {
+            if (Storage::exists('public/' . $postPhoto->post_photo_file)) {
+                Storage::delete('public/' . $postPhoto->post_photo_file);
+            }
+            $postPhoto->delete();
+        }
+
+        $postPdfs = PostPdf::where('post_detail_id', $id)->get();
+        foreach ($postPdfs as $postPdf) {
+            if (Storage::exists('public/' . $postPdf->post_pdf_file)) {
+                Storage::delete('public/' . $postPdf->post_pdf_file);
+            }
+            $postPdf->delete();
+        }
+
+        $postVideos = PostVideo::where('post_detail_id', $id)->get();
+        foreach ($postVideos as $postVideo) {
+            if (Storage::exists('public/' . $postVideo->post_video_file)) {
+                Storage::delete('public/' . $postVideo->post_video_file);
+            }
+            $postVideo->delete();
+        }
+
         $postDetail->delete();
 
-        return redirect()->back()->with('success', 'Post deleted successfully!');
+        return redirect()->route('your_route_name')->with('success', 'โพสถูกลบเรียบร้อยแล้ว!');
     }
 }

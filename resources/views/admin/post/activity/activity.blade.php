@@ -70,16 +70,16 @@
 
 <br>
 <br>
-<table class="table table-striped">
+<table class="table table-bordered text-center">
     <thead class="text-center">
         <tr>
             <th>#</th>
-            <th>Post Type</th>
-            <th>Date</th>
-            <th>Title Name</th>
-            <th>Topic Name</th>
-            <th>Details</th>
-            <th>Actions</th>
+            <th>ประเภท</th>
+            <th>วันที่</th>
+            <th>ชื่อเรื่อง</th>
+            <th>หัวข้อ</th>
+            <th>รายละเอียด</th>
+            <th>การจัดการ</th>
         </tr>
     </thead>
     <tbody class="text-center">

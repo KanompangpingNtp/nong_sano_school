@@ -8,22 +8,22 @@ use App\Models\PostDetail;
 use App\Models\PostPdf;
 use Illuminate\Support\Facades\Storage;
 
-class ProcurementController extends Controller
+class AveragePriceController extends Controller
 {
     //
-    public function ProcurementHome()
+    public function AveragePriceHome()
     {
         $postTypes = PostType::all();
 
-        $postTypeId = $postTypes->firstWhere('type_name', 'ประกาศจัดซื้อจัดจ้าง')->id;
+        $postTypeId = $postTypes->firstWhere('type_name', 'ประกาศราคากลาง')->id;
         $postDetails = PostDetail::with('postType', 'pdfs')
             ->where('post_type_id', $postTypeId)
             ->get();
 
-        return view('admin.post.procurement_announcement.post', compact('postDetails', 'postTypes'));
+        return view('admin.post.average_price.average_price', compact('postDetails', 'postTypes'));
     }
 
-    public function ProcurementCreate(Request $request)
+    public function AveragePriceCreate(Request $request)
     {
         $request->validate([
             'post_type_id' => 'required|exists:post_types,id',
@@ -57,16 +57,12 @@ class ProcurementController extends Controller
         return redirect()->back()->with('success', 'ไฟล์ประกาศถูกเพิ่มแล้ว!');
     }
 
-    public function ProcurementDelete($id)
+    public function AveragePriceDelete($id)
     {
-        // ค้นหาข้อมูล PostDetail ที่จะลบ
         $postDetail = PostDetail::findOrFail($id);
-
-        // ลบไฟล์ PDF ที่เกี่ยวข้อง (ถ้ามี)
         $postPdfs = $postDetail->pdfs;
 
         foreach ($postPdfs as $pdfs) {
-            // ลบไฟล์จาก storage
             if (Storage::exists('public/' . $pdfs->post_pdf_file)) {
                 Storage::delete('public/' . $pdfs->post_pdf_file);
             }
@@ -74,7 +70,6 @@ class ProcurementController extends Controller
 
         $postDetail->delete();
 
-        // ส่งกลับไปยังหน้าก่อนหน้าและแสดงข้อความสำเร็จ
         return redirect()->back()->with('success', 'โพสถูกลบแล้ว');
     }
 }

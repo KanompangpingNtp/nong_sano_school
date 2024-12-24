@@ -46,21 +46,23 @@
 
 <br><br>
 <table class="table table-bordered">
-    <thead>
+    <thead class="text-center">
         <tr>
             <th>#</th>
             <th>ประเภท</th>
             <th>วันที่</th>
+            <th>ชื่อ</th>
             <th>ไฟล์ PDF</th>
             <th>การจัดการ</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody class="text-center">
         @forelse ($postDetails as $index => $postDetail)
         <tr>
             <td>{{ $index + 1 }}</td>
             <td>{{ $postDetail->postType->type_name ?? 'N/A' }}</td>
             <td>{{ $postDetail->date ?? 'N/A' }}</td>
+            <td> {{ $postDetail->title_name ?? 'N/A' }} </td>
             <td>
                 @foreach ($postDetail->pdfs as $pdf)
                 <a href="{{ asset('storage/' . $pdf->post_pdf_file) }}" target="_blank">
@@ -78,7 +80,7 @@
         </tr>
         @empty
         <tr>
-            <td colspan="5" class="text-center">ไม่พบข้อมูล</td>
+            <td colspan="6" class="text-center">ไม่พบข้อมูล</td>
         </tr>
         @endforelse
     </tbody>

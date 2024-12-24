@@ -1,36 +1,27 @@
 @extends('admin.layout.admin_layout')
 @section('user_content')
 
-<h2 class="text-center">จัดการข่าวประชาสัมพันธ์</h2>
+<h2 class="text-center">จัดการอาคารและสถานทื่</h2>
 
 <br>
 
 <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    สร้างข่าวประชาสัมพันธ์
+    สร้างอาคารและสถานทื่
 </button>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" style="margin-top: 5%;">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">สร้างข่าวประชาสัมพันธ์</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">สร้างอาคารและสถานทื่</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="{{ route('PressReleaseCreate') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('BuildingCreate') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
-                    <div class="mb-3">
-                        <input type="hidden" name="post_type_id" value="{{ $postTypes->firstWhere('type_name', 'ข่าวประชาสัมพันธ์')->id }}">
-                        <label for="date" class="form-label">วันที่</label>
-                        <input type="date" class="form-control" id="date" name="date">
-                    </div>
 
                     <div class="mb-3">
-                        <label for="title_name" class="form-label">ชื่อเรื่อง</label>
-                        <input type="text" class="form-control" id="title_name" name="title_name">
-                    </div>
-
-                    <div class="mb-3">
+                        <input type="hidden" name="post_type_id" value="{{ $postTypes->firstWhere('type_name', 'อาคารและสถานทื่')->id }}">
                         <label for="topic_name" class="form-label">หัวข้อ</label>
                         <input type="text" class="form-control" id="topic_name" name="topic_name">
                     </div>
@@ -48,19 +39,12 @@
                     <div class="mb-3">
                         <label for="file_post" class="form-label">แนบไฟล์ภาพและPDF</label>
                         <input type="file" class="form-control" id="file_post" name="file_post[]" multiple>
-                        <small class="text-muted">ประเภทไฟล์ที่รองรับ: jpg, jpeg, png, pdf (ขนาดไม่เกิน 10MB)</small>
+                        <small class="text-muted">ประเภทไฟล์ที่รองรับ: jpg, jpeg, png (ขนาดไม่เกิน 10MB)</small>
                         <!-- แสดงรายการไฟล์ที่แนบ -->
                         <div id="file-list" class="mt-1">
                             <div class="d-flex flex-wrap gap-3"></div>
                         </div>
                     </div>
-
-                    <div>
-                        <label for="file_video" class="form-label">แนบไฟล์วิดีโอ</label>
-                        <input type="file" class="form-control" id="file_video" name="file_video">
-                        <small class="text-muted">ขนาดไฟล์ต้องไม่เกิน 50MB และรองรับเฉพาะไฟล์ .mp4, .avi, .mov, .wmv</small>
-                    </div>
-
                 </div>
 
                 <div class="modal-footer">
@@ -75,16 +59,14 @@
 <br>
 <br>
 
-<table class="table table-bordered text-center">
+<table class="table table-striped text-center">
     <thead>
         <tr>
             <th>#</th>
-            <th>ประเภท</th>
-            <th>วันที่</th>
-            <th>ชื่อเรื่อง</th>
-            <th>หัวข้อ</th>
-            <th>รายละเอียด</th>
-            <th>การจัดการ</th>
+            <th>Post Type</th>
+            <th>Topic Name</th>
+            <th>Details</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -92,15 +74,13 @@
             <tr>
                 <td>{{ $index + 1 }}</td>
                 <td>{{ $postDetail->postType->type_name ?? 'N/A' }}</td>
-                <td>{{ $postDetail->date ?? 'N/A' }}</td>
-                <td>{{ $postDetail->title_name ?? 'N/A' }}</td>
                 <td>{{ $postDetail->topic_name ?? 'N/A' }}</td>
                 <td>{{ $postDetail->details ?? 'N/A' }}</td>
                 <td>
                     <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#showFile-{{ $postDetail->id }}">
                         แสดงไฟล์
                     </button>
-                    <form action="{{ route('PressReleaseDelete', $postDetail->id) }}" method="POST" style="display:inline;">
+                    <form action="{{ route('BuildingDelete', $postDetail->id) }}" method="POST" style="display:inline;">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">ลบ</button>
@@ -124,7 +104,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <!-- ใส่ข้อมูลไฟล์ที่คุณต้องการแสดง เช่น PDF, รูปภาพ, วิดีโอ -->
+
                 <h5>รูปภาพ</h5>
                 @if($postDetail->photos->isNotEmpty())
                 <div>
@@ -136,33 +116,6 @@
                 <p>ไม่มีรูปภาพ</p>
                 @endif
 
-
-                <h5>วิดีโอ</h5>
-                @if($postDetail->videos->isNotEmpty())
-                <div>
-                    @foreach($postDetail->videos as $video)
-                    <video width="320" height="240" controls>
-                        <source src="{{ asset('storage/' . $video->post_video_file) }}" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                    <br><br>
-                    @endforeach
-                </div>
-                @else
-                <p>ไม่มีวิดีโอ</p>
-                @endif
-
-
-                <h5>ไฟล์ PDF</h5>
-                @if($postDetail->pdfs->isNotEmpty())
-                <ul>
-                    @foreach($postDetail->pdfs as $pdf)
-                    <li><a href="{{ asset('storage/' . $pdf->post_pdf_file) }}" target="_blank">{{ $pdf->post_pdf_file }}</a></li>
-                    @endforeach
-                </ul>
-                @else
-                <p>ไม่มีไฟล์ PDF</p>
-                @endif
             </div>
         </div>
     </div>

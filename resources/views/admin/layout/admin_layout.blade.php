@@ -249,6 +249,20 @@
                 <a class="nav-link font-sarabun-bold toggle-collapse" href="{{ route('ProcurementResultsHome') }}">
                     ผลจัดซื้อจัดจ้าง
                 </a>
+                <a class="nav-link font-sarabun-bold toggle-collapse" href="{{ route('AveragePriceHome')}}">
+                    ประกาศราคากลาง
+                </a>
+                <a class="nav-link font-sarabun-bold toggle-collapse" href="{{ route('RevenueHome')}}">
+                    งานเก็บรายได้
+                </a>
+                <a class="nav-link font-sarabun-bold toggle-collapse" href="{{route('ClassRoomHome')}}">
+                    แนะนำห้องเรียน
+                </a>
+                <a class="nav-link font-sarabun-bold toggle-collapse" href="{{route('BuildingHome')}}">
+                    อาคารและสถานทื่
+                </a>
+
+
                 {{-- <a class="nav-link font-sarabun-bold toggle-collapse" href="javascript:void(0)"
                         data-bs-toggle="collapse" data-bs-target="#moreOptions1">
                         Menu
