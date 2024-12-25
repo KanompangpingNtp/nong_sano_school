@@ -48,6 +48,7 @@
 
 @section('title', ' กิจกรรม')
 @section('content')
+
     <div class="bg-press-release py-5">
         <div class="container my-4 ">
             <!-- Header Section -->
@@ -84,6 +85,7 @@
                         </div>
                     </div>
                 @endfor
+
             </div>
         </div>
     </div>

@@ -182,13 +182,48 @@
         /* เพิ่มเงา */
     }
 
-    .modal-body img {
+    #imageModal .modal-dialog {
+
+        max-width: unset;
+        /* ยกเลิกการจำกัดความกว้าง */
+        width: auto;
+        /* ปรับขนาดตามเนื้อหา */
+        display: flex;
+        /* ใช้ flex เพื่อให้เนื้อหาอยู่ตรงกลาง */
+        justify-content: center;
+        align-items: center;
+    }
+
+    #imageModal .modal-content {
+        background-color: white;
+        /* ลบพื้นหลังของ modal (ถ้าไม่ต้องการกรอบ) */
+        border: none;
+        /* ลบขอบ */
         max-width: none;
-        /* ปิดการจำกัดความกว้างของภาพ */
+        /* ไม่มีการจำกัดขนาด */
+        width: auto;
+        /* ปรับตามขนาดรูป */
+    }
+
+    #modalImage {
+        max-width: 100%;
+        /* รูปภาพต้องไม่เกินความกว้างหน้าจอ */
         height: auto;
-        /* รักษาอัตราส่วนภาพ */
-        display: inline-block;
-        /* ให้ภาพแสดงตามขนาดจริง */
+        /* รักษาสัดส่วนของรูป */
+        display: block;
+        /* ป้องกันปัญหาภาพซ้อน */
+    }
+
+
+    .uniform-image {
+        width: 100%;
+        /* ปรับความกว้างให้เต็มคอนเทนเนอร์ */
+        height: 250px;
+        /* ความสูงเท่ากันทุกภาพ */
+        object-fit: cover;
+        /* ครอบภาพให้อยู่ในขอบเขตโดยตัดส่วนเกิน */
+        border-radius: 0.5rem;
+        /* เพิ่มความโค้งมน */
     }
 </style>
 <!-- Content Section -->
@@ -205,42 +240,33 @@
         <div class="blue-broad d-flex justify-content-center align-items-center px-3 py-4 w-100">
             <div class="yellow-board d-flex flex-column justify-content-center align-items-center w-100 py-4 px-5">
                 <div class="row g-4">
-                    <div class="col-12 col-lg-4">
-                        <img src="https://via.placeholder.com/300x200" alt="Image 1"
-                            class="rounded-4 w-100 hover-effect" onclick="openModal(this)">
-                    </div>
-                    <div class="col-12 col-lg-4">
-                        <img src="https://via.placeholder.com/300x200" alt="Image 2"
-                            class="rounded-4 w-100 hover-effect" onclick="openModal(this)">
-                    </div>
-                    <div class="col-12 col-lg-4">
-                        <img src="https://via.placeholder.com/300x200" alt="Image 3"
-                            class="rounded-4 w-100 hover-effect" onclick="openModal(this)">
-                    </div>
-                    <div class="col-12 col-lg-4">
-                        <img src="https://via.placeholder.com/300x200" alt="Image 4"
-                            class="rounded-4 w-100 hover-effect" onclick="openModal(this)">
-                    </div>
-                    <div class="col-12 col-lg-4">
-                        <img src="https://via.placeholder.com/300x200" alt="Image 5"
-                            class="rounded-4 w-100 hover-effect" onclick="openModal(this)">
-                    </div>
-                    <div class="col-12 col-lg-4">
-                        <img src="https://via.placeholder.com/300x200" alt="Image 6"
-                            class="rounded-4 w-100 hover-effect" onclick="openModal(this)">
-                    </div>
-                    <div class="col-12 col-lg-4">
-                        <img src="https://via.placeholder.com/300x200" alt="Image 7"
-                            class="rounded-4 w-100 hover-effect" onclick="openModal(this)">
-                    </div>
-                    <div class="col-12 col-lg-4">
-                        <img src="https://via.placeholder.com/300x200" alt="Image 8"
-                            class="rounded-4 w-100 hover-effect" onclick="openModal(this)">
-                    </div>
-                    <div class="col-12 col-lg-4">
-                        <img src="https://via.placeholder.com/300x200" alt="Image 9"
-                            class="rounded-4 w-100 hover-effect" onclick="openModal(this)">
-                    </div>
+                    @php
+                        $maxItems = 9;
+                        $activitySlice = $activity->slice(0, $maxItems);
+                        $remainingPlaceholders = $maxItems - $activitySlice->count();
+                    @endphp
+
+                    @foreach ($activitySlice as $post)
+                        <div class="col-12 col-lg-4">
+                            @if ($post->photos->where('post_photo_status', 1)->isNotEmpty())
+                                <img src="{{ asset('storage/' . $post->photos->where('post_photo_status', 1)->first()->post_photo_file) }}"
+                                    alt="Image" class="uniform-image hover-effect"
+                                    onclick="openModal(this, '{{ $post->title_name }}')">
+                            @else
+                                <img src="https://via.placeholder.com/460x250" alt="Placeholder"
+                                    class="uniform-image hover-effect">
+                            @endif
+                        </div>
+                    @endforeach
+
+                    {{-- สร้าง placeholder ให้ครบ 9 อัน --}}
+                    @for ($i = 0; $i < $remainingPlaceholders; $i++)
+                        <div class="col-12 col-lg-4">
+                            <img src="https://via.placeholder.com/460x250" alt="Placeholder"
+                                class="uniform-image hover-effect">
+                        </div>
+                    @endfor
+
                 </div>
             </div>
 
@@ -257,7 +283,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="imageModalLabel">แสดงภาพ</h5>
+                <h5 class="modal-title fs-2" id="modalImageTitle">Default Title</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body text-center">
@@ -268,11 +294,21 @@
 </div>
 
 
+
+
 <script>
-    function openModal(imgElement) {
-        const imageUrl = imgElement.src; // ดึง URL รูปภาพจาก src
-        document.getElementById('modalImage').src = imageUrl; // เปลี่ยนรูปภาพใน modal
+    function openModal(imgElement, title) {
+        // ดึง URL รูปภาพจาก src
+        const imageUrl = imgElement.src;
+
+        // ตั้งค่ารูปภาพใน modal
+        document.getElementById('modalImage').src = imageUrl;
+
+        // ตั้งค่า title ใน modal-title
+        document.getElementById('modalImageTitle').textContent = title;
+
+        // เปิด modal
         const myModal = new bootstrap.Modal(document.getElementById('imageModal'));
-        myModal.show(); // เปิด modal
+        myModal.show();
     }
 </script>

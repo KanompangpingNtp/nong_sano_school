@@ -89,7 +89,7 @@
             <img src="https://via.placeholder.com/300x260" alt="Card Image 2">
         </div>
         <!-- Card 3 -->
-        <div class="custom-card card-rotate-right d-xl-block">
+        <div class="custom-card card-rotate-right d-none d-xl-block">
             <img src="https://via.placeholder.com/300x260" alt="Card Image 3">
         </div>
     </div>
