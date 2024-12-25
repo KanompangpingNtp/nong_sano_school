@@ -165,4 +165,6 @@
 </div>
 @endforeach
 
+<script src="{{ asset('js/multipart_files.js') }}"></script>
+
 @endsection

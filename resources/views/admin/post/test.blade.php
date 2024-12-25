@@ -9,22 +9,35 @@
 <body>
     {{-- ประชาสัมพันธ์ --}}
     @foreach ($pressRelease as $post)
+    <br>
+    <p>id : {{ $post->id }}</p>
     <p>วันที่ : {{ $post->title_name }}</p>
     <p>หัวข้อ : {{ $post->title_name }}</p>
     <p>ชื่อเรื่อง : {{ $post->topic_name }}</p>
     <p>รายละเอียด : {{ $post->details }}</p>
 
-    {{-- รูปภาพ --}}
-    <h4>รูปภาพ</h4>
-    @if($post->photos->isNotEmpty())
+    <h4>ภาพหัวข้อ</h4>
+    @if($post->photos->where('post_photo_status', 1)->isNotEmpty())
     <div>
-        @foreach($post->photos as $photo)
-        <img src="{{ asset('storage/' . $photo->post_photo_file) }}" alt="Image" style="width:150px; height:150px; object-fit:cover; margin-bottom:10px;">
+        @foreach($post->photos->where('post_photo_status', 1) as $photo)
+        <img src="{{ asset('storage/' . $photo->post_photo_file) }}" alt="Title Image" style="width:150px; height:150px; object-fit:cover; margin-bottom:10px;">
         @endforeach
     </div>
     @else
-    <p>ไม่มีรูปภาพ</p>
+    <p>ไม่มีภาพหัวข้อ</p>
     @endif
+
+    <h4>ภาพทั่วไป</h4>
+    @if($post->photos->where('post_photo_status', 2)->isNotEmpty())
+    <div>
+        @foreach($post->photos->where('post_photo_status', 2) as $photo)
+        <img src="{{ asset('storage/' . $photo->post_photo_file) }}" alt="General Image" style="width:150px; height:150px; object-fit:cover; margin-bottom:10px;">
+        @endforeach
+    </div>
+    @else
+    <p>ไม่มีภาพทั่วไป</p>
+    @endif
+
 
     {{-- วิดีโอที่เกี่ยวข้อง --}}
     @if ($post->videos->isNotEmpty())
