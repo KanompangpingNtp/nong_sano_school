@@ -223,7 +223,7 @@
 
             <!-- Sidebar -->
             <div class="d-flex justify-content-center align-content-center custom-border-bottom mb-3 mx-3">
-                <div class=" font-sarabun-bold d-none d-md-block" style="font-size: 40px">เมนู
+                <div class=" font-sarabun-bold d-none d-md-block" style="font-size: 40px">การจัดการข้อมูล
                 </div>
                 <a id="toggle-sidebars" class="font-sarabun-bold d-md-none my-2" style="font-size: 40px">
                     ปิดเมนู
@@ -231,11 +231,11 @@
             </div>
             <!-- เมนูที่สามารถคลิกเพื่อเปิดตัวเลือกเพิ่มเติม -->
             <div class="nav-item">
-                <a class="nav-link font-sarabun-bold toggle-collapse" href="">
+                {{-- <a class="nav-link font-sarabun-bold toggle-collapse" href="">
                     หน้าหลัก
-                </a>
+                </a> --}}
 
-                <hr>
+                {{-- <hr> --}}
 
                 <a class="nav-link font-sarabun-bold toggle-collapse" href="{{ route('PressReleaseHome') }}">
                     จัดการข่าวประชาสัมพันธ์
@@ -243,8 +243,9 @@
                 <a class="nav-link font-sarabun-bold toggle-collapse" href="{{ route('ActivityHome') }}">
                     จัดการกิจกรรม
                 </a>
-                <a class="nav-link font-sarabun-bold toggle-collapse" href="{{ route('ProcurementHome') }}">
-                    ประกาศจัดซื้อจัดจ้าง
+
+                {{-- <a class="nav-link font-sarabun-bold toggle-collapse" href="{{ route('ProcurementHome') }}">
+                ประกาศจัดซื้อจัดจ้าง
                 </a>
                 <a class="nav-link font-sarabun-bold toggle-collapse" href="{{ route('ProcurementResultsHome') }}">
                     ผลจัดซื้อจัดจ้าง
@@ -254,33 +255,33 @@
                 </a>
                 <a class="nav-link font-sarabun-bold toggle-collapse" href="{{ route('RevenueHome')}}">
                     งานเก็บรายได้
+                </a> --}}
+
+                <a class="nav-link font-sarabun-bold toggle-collapse" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#moreOptions1">
+                    จักการประกาศ
                 </a>
+                <div id="moreOptions1" class="collapse bg-option-nav mx-2">
+                    <div class="nav-item">
+                        <a class="nav-link" href="{{ route('ProcurementHome') }}"><i class="fa-solid fa-caret-right"></i>ประกาศจัดซื้อจัดจ้าง</a>
+                    </div>
+                    <div class="nav-item">
+                        <a class="nav-link" href="{{ route('ProcurementResultsHome') }}"><i class="fa-solid fa-caret-right"></i>ผลจัดซื้อจัดจ้าง</a>
+                    </div>
+                    <div class="nav-item">
+                        <a class="nav-link" href="{{ route('AveragePriceHome')}}"><i class="fa-solid fa-caret-right"></i>ประกาศราคากลาง</a>
+                    </div>
+                    <div class="nav-item">
+                        <a class="nav-link" href="{{ route('RevenueHome')}}"><i class="fa-solid fa-caret-right"></i>จัดการอาคาร
+                            และสถานทื่</a>
+                    </div>
+                </div>
                 <a class="nav-link font-sarabun-bold toggle-collapse" href="{{route('ClassRoomHome')}}">
-                    แนะนำห้องเรียน
+                    จัดการแนะนำห้องเรียน
                 </a>
                 <a class="nav-link font-sarabun-bold toggle-collapse" href="{{route('BuildingHome')}}">
-                    อาคารและสถานทื่
+                    จัดการอาคารและสถานทื่
                 </a>
-
-
-                {{-- <a class="nav-link font-sarabun-bold toggle-collapse" href="javascript:void(0)"
-                        data-bs-toggle="collapse" data-bs-target="#moreOptions1">
-                        Menu
-                    </a>
-                    <!-- ตัวเลือกที่จะแสดงเมื่อคลิก -->
-                    <div id="moreOptions1" class="collapse bg-option-nav mx-2">
-                        <div class="nav-item">
-                            <a class="nav-link" href=""><i
-                                    class="fa-solid fa-caret-right"></i> Menu 1</a>
-                        </div>
-                        <div class="nav-item">
-                            <a class="nav-link" href=""><i
-                                    class="fa-solid fa-caret-right"></i> Menu 2</a>
-                        </div>
-                    </div> --}}
-
             </div>
-
         </div>
     </div>
 
