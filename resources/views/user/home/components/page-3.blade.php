@@ -152,10 +152,6 @@
     }
 
     .card-image {
-        background-image: url('https://via.placeholder.com/460x200');
-        /* เปลี่ยน URL ให้เป็นรูปที่คุณต้องการ */
-        background-size: cover;
-        background-position: center;
         border-radius: 15px;
         margin-top: 10px;
         margin-bottom: 10px;
@@ -294,24 +290,21 @@
         </div>
         <div class="blackboard d-flex flex-column justify-content-center align-items-center">
             <div class="card-container d-flex flex-column flex-lg-row justify-content-center w-100">
-                <div class="card mb-4 mb-lg-0 me-lg-3 w-100 w-lg-50">
-                    <img src="{{ asset('images/pages/3/pin.png') }}" alt="pin" class="pin-icon">
-                    <div class="card-image"></div>
-                    <div class="card-text">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquid quasi ipsa pariatur.
-                        Perferendis ab, praesentium sunt facere nostrum fugit similique esse cupiditate ipsam suscipit
-                        impedit eligendi dolores, dolorum dolor voluptas?
+                @foreach ($pressRelease->slice(0, 2) as $post)
+                    <div class="card mb-4 mb-lg-0 me-lg-3 w-100 w-lg-50">
+                        <img src="{{ asset('images/pages/3/pin.png') }}" alt="pin" class="pin-icon">
+                        @if ($post->photos->isNotEmpty())
+                            <img src="{{ asset('storage/' . $post->photos->first()->post_photo_file) }}" alt="Image"
+                                class="card-image">
+                        @else
+                            <img src="https://via.placeholder.com/460x200" alt="Placeholder" class="pin-icon">
+                        @endif
+                        <div class="card-text">
+                            {{ $post->details }}
+                        </div>
                     </div>
-                </div>
-                <div class="card w-100 w-lg-50">
-                    <img src="{{ asset('images/pages/3/pin.png') }}" alt="pin" class="pin-icon">
-                    <div class="card-image"></div>
-                    <div class="card-text">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquid quasi ipsa pariatur.
-                        Perferendis ab, praesentium sunt facere nostrum fugit similique esse cupiditate ipsam suscipit
-                        impedit eligendi dolores, dolorum dolor voluptas?
-                    </div>
-                </div>
+                @endforeach
+
             </div>
             <div class="text-center my-3 font-sarabun-bold">
                 <button class="new-button "><i class="fa-solid fa-arrow-right-to-bracket" style="font-size: 18px;"></i>
