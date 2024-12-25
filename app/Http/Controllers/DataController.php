@@ -58,7 +58,7 @@ class DataController extends Controller
                 $query->where('type_name', 'อาคารและสถานทื่');
             })->get();
 
-        return view('admin.post.test', compact(
+        return view('user.home.home', compact(
             'pressRelease',
             'activity',
             'procurement',
