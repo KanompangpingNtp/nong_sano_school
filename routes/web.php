@@ -23,7 +23,7 @@ use App\Http\Controllers\BuildingController;
 */
 
 Route::get('/', function () {
-    return view('user.data-school.index');
+    return view('user.data-school.emblem-school.index');
 });
 
 // Route::get('/classroom/page', [AdminController::class, 'ClassRoomPage'])->name('ClassRoomPage');
