@@ -328,11 +328,11 @@
             </div>
         </nav>
 
-
         <!-- Dashboard Content -->
         <div class="main-content">
             @yield('user_content')
         </div>
+
     </div>
     </div>
 

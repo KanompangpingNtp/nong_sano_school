@@ -104,13 +104,6 @@ class PressReleaseController extends Controller
         return redirect()->back()->with('success', 'โพสถูกเพิ่มแล้ว!');
     }
 
-    // public function PressReleaseDelete($id)
-    // {
-    //     $postDetail = PostDetail::findOrFail($id);
-    //     $postDetail->delete();
-
-    //     return redirect()->back()->with('success', 'Post deleted successfully!');
-    // }
     public function PressReleaseDelete($id)
     {
         $postDetail = PostDetail::find($id);

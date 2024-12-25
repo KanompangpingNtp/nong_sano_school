@@ -10,6 +10,7 @@ use App\Http\Controllers\AveragePriceController;
 use App\Http\Controllers\RevenueController;
 use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\BuildingController;
+use App\Http\Controllers\DataController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +27,7 @@ Route::get('/', function () {
     return view('user.data-school.emblem-school.index');
 });
 
-// Route::get('/classroom/page', [AdminController::class, 'ClassRoomPage'])->name('ClassRoomPage');
+Route::get('/home', [DataController::class, 'HomeIndex'])->name('HomeIndex');
 
 //admin PressRelease
 Route::get('/PressRelease/page', [PressReleaseController::class, 'PressReleaseHome'])->name('PressReleaseHome');

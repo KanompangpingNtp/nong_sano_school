@@ -396,7 +396,7 @@
                 <div
                     class="d-flex flex-column flex-lg-row align-items-center justify-content-between font-sarabun-bold w-100 pt-3">
                     <div class="w-100 text-center py-3 py-lg-0">
-                        <a href="#"
+                        <a href="{{route('HomeIndex')}}"
                             class="text-decoration-none d-block d-flex flex-row flex-lg-column align-items-center justify-content-center gap-2 gap-lg-0">
                             <img src="{{ asset('images/pages/1/school.png') }}" alt="school" class="mb-2">
                             <span>หน้าแรก</span>
