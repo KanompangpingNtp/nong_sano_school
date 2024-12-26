@@ -78,6 +78,7 @@ class DataController extends Controller
             })->get();
 
         return view('user.activity.show-data.index', compact('activity'));
+        // return view('admin.post.test', compact('activity'));
     }
 
     public function BuildingShowData()

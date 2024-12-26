@@ -23,11 +23,12 @@ use App\Http\Controllers\DataController;
 |
 */
 
-Route::get('/', function () {
-    return view('user.activity.show-data.index');
-});
+// Route::get('/', function () {
+//     return view('user.activity.show-data.index');
+// });
 
-Route::get('/home', [DataController::class, 'HomeIndex'])->name('HomeIndex');
+//data
+Route::get('/', [DataController::class, 'HomeIndex'])->name('HomeIndex');
 Route::get('/Activity/Show/Data', [DataController::class, 'ActivityShowData'])->name('ActivityShowData');
 Route::get('/Building/Show/Data', [DataController::class, 'BuildingShowData'])->name('BuildingShowData');
 Route::get('/ClassRoom/Show/Data', [DataController::class, 'ClassRoomShowData'])->name('ClassRoomShowData');
@@ -62,7 +63,6 @@ Route::get('/Revenue/page', [RevenueController::class, 'RevenueHome'])->name('Re
 Route::post('/Revenue/create', [RevenueController::class, 'RevenueCreate'])->name('RevenueCreate');
 Route::delete('/Revenue/delete{id}', [AveragePriceController::class, 'RevenueDelete'])->name('RevenueDelete');
 
-
 //admin ClassRoom
 Route::get('/ClassRoom/page', [ClassroomController::class, 'ClassRoomHome'])->name('ClassRoomHome');
 Route::post('/ClassRoom/create', [ClassroomController::class, 'ClassRoomCreate'])->name('ClassRoomCreate');
@@ -72,7 +72,5 @@ Route::delete('/ClassRoom/delete{id}', [ClassroomController::class, 'ClassRoomDe
 Route::get('/Building/page', [BuildingController::class, 'BuildingHome'])->name('BuildingHome');
 Route::post('/Building/create', [BuildingController::class, 'BuildingCreate'])->name('BuildingCreate');
 Route::delete('/Building/delete{id}', [BuildingController::class, 'BuildingDelete'])->name('BuildingDelete');
-
-
 
 // Route::get('/test', [DataController::class, 'ActivityShowData'])->name('ActivityShowData');
