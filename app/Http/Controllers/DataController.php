@@ -70,6 +70,64 @@ class DataController extends Controller
         ));
     }
 
+    public function PressReleaseShowDetails($id)
+    {
+        //ข่าวประชาสัมพันธ์
+        $pressRelease = PostDetail::with(['postType', 'videos', 'photos', 'pdfs'])
+            ->whereHas('postType', function ($query) {
+                $query->where('type_name', 'ข่าวประชาสัมพันธ์');
+            })
+            ->findOrFail($id);
+
+        return view('user.press-release.detail-data.index', compact('pressRelease'));
+    }
+
+    public function ActivityShowDetails($id)
+    {
+        //กิจกรรม
+        $activity = PostDetail::with(['postType', 'videos', 'photos', 'pdfs'])
+            ->whereHas('postType', function ($query) {
+                $query->where('type_name', 'กิจกรรม');
+            })
+            ->findOrFail($id);
+
+        return view('user.activity.detail-data.index', compact('activity'));
+    }
+
+    public function ClassRoomShowDetails($id)
+    {
+        //แนะนำห้องเรียน
+        $classroom = PostDetail::with(['postType', 'videos', 'photos', 'pdfs'])
+            ->whereHas('postType', function ($query) {
+                $query->where('type_name', 'แนะนำห้องเรียน');
+            })
+            ->findOrFail($id);
+
+        return view('user.classroom.detail-data.index', compact('classroom'));
+    }
+
+    public function BuildingShowDetails($id)
+    {
+        //อาคารและสถานทื่
+        $building = PostDetail::with(['postType', 'videos', 'photos', 'pdfs'])
+            ->whereHas('postType', function ($query) {
+                $query->where('type_name', 'อาคารและสถานทื่');
+            })
+            ->findOrFail($id);
+
+        return view('user.building-places.detail-data.index', compact('building'));
+    }
+
+    public function PressReleaseShowData()
+    {
+        $pressRelease = PostDetail::with('postType', 'videos', 'photos', 'pdfs')
+            ->whereHas('postType', function ($query) {
+                $query->where('type_name', 'ข่าวประชาสัมพันธ์');
+            })->get();
+
+        return view('user.press-release.show-data.index', compact('pressRelease'));
+    }
+
     public function ActivityShowData()
     {
         $activity = PostDetail::with('postType', 'videos', 'photos', 'pdfs')
@@ -78,7 +136,6 @@ class DataController extends Controller
             })->get();
 
         return view('user.activity.show-data.index', compact('activity'));
-        // return view('admin.post.test', compact('activity'));
     }
 
     public function BuildingShowData()

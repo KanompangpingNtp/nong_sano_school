@@ -205,7 +205,7 @@
                         // เปลี่ยนสีพื้นหลังของ 3 อันแรก
                         $bgColor = $loop->index < 3 ? 'rgb(233, 190, 82)' : 'rgb(56, 56, 213)';
                     @endphp
-                    <div class="card-egiht " style="background-color:{{ $bgColor }};">
+                    {{-- <div class="card-egiht " style="background-color:{{ $bgColor }};">
                         @if ($post->photos->where('post_photo_status', 1)->isNotEmpty())
                             <img src="{{ asset('storage/' . $post->photos->where('post_photo_status', 1)->first()->post_photo_file) }}"
                                 alt="Image" class="uniform-image card-egiht-image">
@@ -214,7 +214,19 @@
                                 class="uniform-image card-egiht-image">
                         @endif
                         <div class="card-egiht-text">{{ $post->topic_name }}</div>
+                    </div> --}}
+                    <div class="card-seven" style="background-color:{{ $bgColor }};">
+                        <a href="{{ route('BuildingShowDetails', $post->id) }}" class="text-decoration-none">
+                            @if ($post->photos->where('post_photo_status', 1)->isNotEmpty())
+                                <img src="{{ asset('storage/' . $post->photos->where('post_photo_status', 1)->first()->post_photo_file) }}"
+                                    alt="Image" class="uniform-image card-seven-image">
+                            @else
+                                <img src="https://via.placeholder.com/460x250" alt="Placeholder" class="uniform-image card-seven-image">
+                            @endif
+                            <div class="card-seven-text">{{ $post->topic_name }}</div>
+                        </a>
                     </div>
+
                 </div>
             @endforeach
 
@@ -230,9 +242,9 @@
             @endfor
         </div>
         <div class="text-center mt-3 w-100 font-sarabun-bold">
-            <button class="comic-button-eight w-100"><i class="fa-solid fa-up-right-from-square me-2"
+            <a href="{{route('BuildingShowData')}}" class="comic-button-eight w-100"><i class="fa-solid fa-up-right-from-square me-2"
                     style="font-size:20px;"></i>
-                ดูทั้งหมด</button>
+                ดูทั้งหมด</a>
         </div>
     </div>
 </main>

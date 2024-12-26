@@ -44,47 +44,48 @@
         margin-right: 8px;
         /* ระยะห่างระหว่างไอคอนและข้อความ */
     }
+
 </style>
 
 @section('title', ' ข่าวประชาสัมพันธ์')
 @section('content')
-    <div class="bg-press-release py-5">
-        <div class="container my-4 ">
-            <!-- Header Section -->
-            <div class="row align-items-center mb-4">
-                <div class="col-12 col-md-6 mb-2 mb-md-0">
-                    <p class="text-center text-lg-start text-primary font-sarabun-bold" style="font-size: 4rem;">
-                        ข่าวประชาสัมพันธ์</p>
-                </div>
-                <div class="col-12 col-md-6 text-md-end">
-                    <form class="d-flex justify-content-center justify-content-md-end">
-                        <input type="text" class="form-control me-2 fs-3" placeholder="ค้นหา..." aria-label="Search">
-                        <button class="btn btn-primary fs-3 d-flex align-items-center" type="submit">
-                            <i class="fa-solid fa-magnifying-glass fs-5 me-2"></i> <!-- ไอคอน -->
-                            ค้นหา
-                        </button>
-                    </form>
-                </div>
-
+<div class="bg-press-release py-5">
+    <div class="container my-4 ">
+        <!-- Header Section -->
+        <div class="row align-items-center mb-4">
+            <div class="col-12 col-md-6 mb-2 mb-md-0">
+                <p class="text-center text-lg-start text-primary font-sarabun-bold" style="font-size: 4rem;">
+                    ข่าวประชาสัมพันธ์</p>
+            </div>
+            <div class="col-12 col-md-6 text-md-end">
+                <form class="d-flex justify-content-center justify-content-md-end">
+                    <input type="text" class="form-control me-2 fs-3" placeholder="ค้นหา..." aria-label="Search">
+                    <button class="btn btn-primary fs-3 d-flex align-items-center" type="submit">
+                        <i class="fa-solid fa-magnifying-glass fs-5 me-2"></i> <!-- ไอคอน -->
+                        ค้นหา
+                    </button>
+                </form>
             </div>
 
-            <!-- Cards Section -->
-            <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-3">
-                @for ($i = 1; $i <= 12; $i++)
-                    <div class="col">
-                        <div class="card h-100 shadow-sm">
-                            <img src="https://via.placeholder.com/150" class="card-img-top" alt="Image {{ $i }}">
-                            <div class="card-body d-flex flex-column">
-                                <p class="card-text fs-4">รายละเอียดข้อมูลตัวอย่างที่แสดงในการ์ด หมายเลข {{ $i }}
-                                </p>
-                                <a href="#" class="btn btn-primary mt-auto fs-4">
-                                    <i class="fas fa-info-circle btn-icon" style="font-size: 18px;"></i> ดูเพิ่มเติม
-                                </a>
-                            </div>
-                        </div>
+        </div>
+
+        <!-- Cards Section -->
+        <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-3">
+            @foreach ($pressRelease as $post)
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <img src="{{ asset('storage/' . $post->photos->where('post_photo_status', 1)->first()->post_photo_file) }}" class="card-img-top" alt="{{ $post->title_name }}">
+                    <div class="card-body d-flex flex-column">
+                        <p class="card-text fs-4">{{ $post->details}}
+                        </p>
+                        <a href="{{route('PressReleaseShowDetails',$post->id)}}" class="btn btn-primary mt-auto fs-4">
+                            <i class="fas fa-info-circle btn-icon" style="font-size: 18px;"></i> ดูเพิ่มเติม
+                        </a>
                     </div>
-                @endfor
+                </div>
             </div>
+            @endforeach
         </div>
     </div>
+</div>
 @endsection

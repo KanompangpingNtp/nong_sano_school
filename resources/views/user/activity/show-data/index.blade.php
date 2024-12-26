@@ -79,7 +79,7 @@
                             <div class="card-body d-flex flex-column">
                                 <h5 class="card-title fs-2 text-primary font-sarabun-bold">{{ $post->title_name }}
                                 </h5>
-                                <a href="#" class="btn btn-primary mt-auto fs-4">
+                                <a href="{{route('ActivityShowDetails',$post->id)}}" class="btn btn-primary mt-auto fs-4">
                                     <i class="fas fa-info-circle btn-icon" style="font-size: 18px;"></i> ดูเพิ่มเติม
                                 </a>
                             </div>

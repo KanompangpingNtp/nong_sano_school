@@ -66,7 +66,7 @@
         right: 10px;
     }
 
-    .view-all-btn button {
+    .view-all-btn a {
         border: 5px solid rgb(56, 56, 213);
         background-color: rgb(233, 190, 82);
         color: rgb(56, 56, 213);
@@ -75,7 +75,7 @@
         border-radius: 30px;
     }
 
-    .view-all-btn button {
+    .view-all-btn a {
         border: 5px solid rgb(56, 56, 213);
         background-color: rgb(233, 190, 82);
         color: rgb(56, 56, 213);
@@ -86,7 +86,7 @@
         /* เพิ่ม transition เพื่อให้มีการเปลี่ยนแปลงที่นุ่มนวล */
     }
 
-    .view-all-btn button:hover {
+    .view-all-btn a:hover {
         background-color: rgb(56, 56, 213);
         /* เปลี่ยนสีพื้นหลังเมื่อ hover */
         color: rgb(233, 190, 82);
@@ -246,15 +246,15 @@
                         $remainingPlaceholders = $maxItems - $activitySlice->count();
                     @endphp
 
-                    @foreach ($activitySlice as $post)
+                    @foreach ($activity as $post)
                         <div class="col-12 col-lg-4">
                             @if ($post->photos->where('post_photo_status', 1)->isNotEmpty())
-                                <img src="{{ asset('storage/' . $post->photos->where('post_photo_status', 1)->first()->post_photo_file) }}"
-                                    alt="Image" class="uniform-image hover-effect"
-                                    onclick="openModal(this, '{{ $post->title_name }}')">
+                                <a href="{{ route('ActivityShowDetails', $post->id) }}">
+                                    <img src="{{ asset('storage/' . $post->photos->where('post_photo_status', 1)->first()->post_photo_file) }}"
+                                        alt="Image" class="uniform-image hover-effect">
+                                </a>
                             @else
-                                <img src="https://via.placeholder.com/460x250" alt="Placeholder"
-                                    class="uniform-image hover-effect">
+                                <img src="https://via.placeholder.com/460x250" alt="Placeholder" class="uniform-image hover-effect">
                             @endif
                         </div>
                     @endforeach
@@ -266,15 +266,13 @@
                                 class="uniform-image hover-effect">
                         </div>
                     @endfor
-
                 </div>
             </div>
 
             <div class="view-all-btn font-sarabun-bold">
-                <button>ดูทั้งหมด</button>
+                <a href="{{route('ActivityShowData')}}" style="text-decoration: none;">ดูทั้งหมด</a>
             </div>
         </div>
-
     </div>
 </main>
 

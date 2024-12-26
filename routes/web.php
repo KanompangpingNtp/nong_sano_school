@@ -27,12 +27,19 @@ use App\Http\Controllers\DataController;
 //     return view('user.activity.show-data.index');
 // });
 
-//data
+//show data
 Route::get('/', [DataController::class, 'HomeIndex'])->name('HomeIndex');
+Route::get('PressReleaseShowData', [DataController::class, 'PressReleaseShowData'])->name('PressReleaseShowData');
 Route::get('/Activity/Show/Data', [DataController::class, 'ActivityShowData'])->name('ActivityShowData');
 Route::get('/Building/Show/Data', [DataController::class, 'BuildingShowData'])->name('BuildingShowData');
 Route::get('/ClassRoom/Show/Data', [DataController::class, 'ClassRoomShowData'])->name('ClassRoomShowData');
 Route::get('/Announce/Show/Data', [DataController::class, 'AnnounceShowData'])->name('AnnounceShowData');
+
+//show detail
+Route::get('/PressRelease/Show/Details/{id}', [DataController::class, 'PressReleaseShowDetails'])->name('PressReleaseShowDetails');
+Route::get('/Activity/Show/Details/{id}', [DataController::class, 'ActivityShowDetails'])->name('ActivityShowDetails');
+Route::get('/ClassRoom/Show/Details/{id}', [DataController::class, 'ClassRoomShowDetails'])->name('ClassRoomShowDetails');
+Route::get('/Building/Show/Details/{id}', [DataController::class, 'BuildingShowDetails'])->name('BuildingShowDetails');
 
 //admin PressRelease
 Route::get('/PressRelease/page', [PressReleaseController::class, 'PressReleaseHome'])->name('PressReleaseHome');

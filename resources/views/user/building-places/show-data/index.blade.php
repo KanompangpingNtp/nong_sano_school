@@ -70,20 +70,21 @@
 
             <!-- Cards Section -->
             <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-3">
-                @for ($i = 1; $i <= 12; $i++)
-                    <div class="col">
-                        <div class="card h-100 shadow-sm">
-                            <img src="https://via.placeholder.com/150" class="card-img-top" alt="Image {{ $i }}">
-                            <div class="card-body d-flex flex-column">
-                                <h5 class="card-title fs-2 text-primary font-sarabun-bold">ข้อมูลที่ {{ $i }}
-                                </h5>
-                                <a href="#" class="btn btn-primary mt-auto fs-4">
-                                    <i class="fas fa-info-circle btn-icon" style="font-size: 18px;"></i> ดูเพิ่มเติม
-                                </a>
-                            </div>
+                @foreach ($building as $post)
+                <div class="col">
+                    <div class="card h-100 shadow-sm">
+                        <img src="{{ asset('storage/' . $post->photos->where('post_photo_status', 1)->first()->post_photo_file) }}"
+                            class="card-img-top" alt="{{ $post->topic_name }}">
+                        <div class="card-body d-flex flex-column">
+                            <p class="card-text fs-4">{{ $post->details}}
+                            </p>
+                            <a href="{{route('BuildingShowDetails',$post->id)}}" class="btn btn-primary mt-auto fs-4">
+                                <i class="fas fa-info-circle btn-icon" style="font-size: 18px;"></i> ดูเพิ่มเติม
+                            </a>
                         </div>
                     </div>
-                @endfor
+                </div>
+            @endforeach
             </div>
         </div>
     </div>

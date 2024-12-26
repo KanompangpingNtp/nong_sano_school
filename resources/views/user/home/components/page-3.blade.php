@@ -291,25 +291,27 @@
         <div class="blackboard d-flex flex-column justify-content-center align-items-center">
             <div class="card-container d-flex flex-column flex-lg-row justify-content-center w-100">
                 @foreach ($pressRelease->slice(0, 2) as $post)
-                    <div class="card mb-4 mb-lg-0 me-lg-3 w-100 w-lg-50">
-                        <img src="{{ asset('images/pages/3/pin.png') }}" alt="pin" class="pin-icon">
-                        @if ($post->photos->where('post_photo_status', 1)->isNotEmpty())
-                            <img src="{{ asset('storage/' . $post->photos->where('post_photo_status', 1)->first()->post_photo_file) }}"
-                                alt="Image" class="card-image">
-                        @else
-                            <img src="https://via.placeholder.com/460x200" alt="Placeholder" class="pin-icon">
-                        @endif
+                    <a href="{{ route('PressReleaseShowDetails', $post->id) }}" class="card-link" style="text-decoration: none;">
+                        <div class="card mb-4 mb-lg-0 me-lg-3 w-100 w-lg-50">
+                            <img src="{{ asset('images/pages/3/pin.png') }}" alt="pin" class="pin-icon">
+                            @if ($post->photos->where('post_photo_status', 1)->isNotEmpty())
+                                <img src="{{ asset('storage/' . $post->photos->where('post_photo_status', 1)->first()->post_photo_file) }}"
+                                    alt="Image" class="card-image">
+                            @else
+                                <img src="https://via.placeholder.com/460x200" alt="Placeholder" class="pin-icon">
+                            @endif
 
-                        <div class="card-text">
-                            {{ $post->details }}
+                            <div class="card-text">
+                                {{ $post->details }}
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 @endforeach
-
             </div>
+
             <div class="text-center my-3 font-sarabun-bold">
-                <button class="new-button "><i class="fa-solid fa-arrow-right-to-bracket" style="font-size: 18px;"></i>
-                    ดูทั้งหมด</button>
+                <a href="{{route('PressReleaseShowData')}}" class="new-button" style="text-decoration: none;"><i class="fa-solid fa-arrow-right-to-bracket" style="font-size: 18px;"></i>
+                    ดูทั้งหมด</a>
             </div>
         </div>
     </div>
