@@ -293,12 +293,13 @@
                 @foreach ($pressRelease->slice(0, 2) as $post)
                     <div class="card mb-4 mb-lg-0 me-lg-3 w-100 w-lg-50">
                         <img src="{{ asset('images/pages/3/pin.png') }}" alt="pin" class="pin-icon">
-                        @if ($post->photos->isNotEmpty())
-                            <img src="{{ asset('storage/' . $post->photos->first()->post_photo_file) }}" alt="Image"
-                                class="card-image">
+                        @if ($post->photos->where('post_photo_status', 1)->isNotEmpty())
+                            <img src="{{ asset('storage/' . $post->photos->where('post_photo_status', 1)->first()->post_photo_file) }}"
+                                alt="Image" class="card-image">
                         @else
                             <img src="https://via.placeholder.com/460x200" alt="Placeholder" class="pin-icon">
                         @endif
+
                         <div class="card-text">
                             {{ $post->details }}
                         </div>

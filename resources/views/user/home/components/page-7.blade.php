@@ -194,43 +194,48 @@
                 class="classroom-right pb-3 d-none d-md-block">
         </div>
         <div class="row w-100 row-gap-4 d-flex justify-content-around align-items-center">
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="card-seven" style="background-color:rgb(233, 190, 82);">
-                    <div class="card-seven-image"></div>
-                    <div class="card-seven-text">Card 1</div>
+            @php
+                $maxItems = 6; // จำนวนสูงสุดที่ต้องการ
+                $activitySlice = $activity->slice(0, $maxItems); // ตัดข้อมูลเป็นจำนวนที่ต้องการ
+                $remainingPlaceholders = $maxItems - $activitySlice->count(); // คำนวณจำนวนที่เหลือ
+            @endphp
+
+            @foreach ($activitySlice as $post)
+                <div class="col-12 col-md-6 col-lg-4">
+                    @php
+                        // เปลี่ยนสีพื้นหลังของ 3 อันแรก
+                        $bgColor = $loop->index < 3 ? 'rgb(233, 190, 82)' : 'rgb(56, 56, 213)';
+                    @endphp
+                    <div class="card-seven" style="background-color:{{ $bgColor }};">
+                        @if ($post->photos->where('post_photo_status', 1)->isNotEmpty())
+                            <img src="{{ asset('storage/' . $post->photos->where('post_photo_status', 1)->first()->post_photo_file) }}"
+                                alt="Image" class="uniform-image card-seven-image">
+                        @else
+                            <img src="https://via.placeholder.com/460x250" alt="Placeholder"
+                                class="uniform-image card-seven-image">
+                        @endif
+                        <div class="card-seven-text">{{ $post->title_name }}</div>
+                    </div>
                 </div>
-            </div>
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="card-seven" style="background-color:rgb(233, 190, 82);">
-                    <div class="card-seven-image"></div>
-                    <div class="card-seven-text">Card 2</div>
+            @endforeach
+
+            @for ($i = 0; $i < $remainingPlaceholders; $i++)
+                @php
+                    // คำนวณสีพื้นหลังที่ใช้ โดยนับต่อจากข้อมูลที่มีอยู่แล้ว
+                    $bgColor = $activitySlice->count() + $i < 3 ? 'rgb(233, 190, 82)' : 'rgb(56, 56, 213)';
+                @endphp
+                <!-- แสดง Placeholder สำหรับที่เหลือ -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card-seven" style="background-color:{{ $bgColor }};">
+                        <img src="https://via.placeholder.com/460x250" alt="Placeholder"
+                            class="uniform-image card-seven-image">
+                        <div class="card-seven-text">Placeholder</div>
+                    </div>
                 </div>
-            </div>
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="card-seven" style="background-color:rgb(233, 190, 82);">
-                    <div class="card-seven-image"></div>
-                    <div class="card-seven-text">Card 3</div>
-                </div>
-            </div>
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="card-seven" style="background-color: rgb(56, 56, 213);">
-                    <div class="card-seven-image"></div>
-                    <div class="card-seven-text">Card 4</div>
-                </div>
-            </div>
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="card-seven" style="background-color: rgb(56, 56, 213);">
-                    <div class="card-seven-image"></div>
-                    <div class="card-seven-text">Card 5</div>
-                </div>
-            </div>
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="card-seven" style="background-color: rgb(56, 56, 213);">
-                    <div class="card-seven-image"></div>
-                    <div class="card-seven-text">Card 6</div>
-                </div>
-            </div>
+            @endfor
+
         </div>
+
         <div class="text-center mt-3 w-100 px-3 font-sarabun-bold">
             <button class="comic-button-seven w-100"><i class="fa-solid fa-up-right-from-square me-2"
                     style="font-size:20px;"></i>

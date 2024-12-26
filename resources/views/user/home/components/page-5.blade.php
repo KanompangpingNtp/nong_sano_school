@@ -23,6 +23,7 @@
     .title-page5 {
         color: white;
         font-size: 5rem;
+        padding-top: 10px;
         text-shadow:
             3px 3px 0px black,
             -3px -3px 0px black,
@@ -97,19 +98,19 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        padding-left: 3rem;
-        width: 300px;
+        padding-left: 5rem;
+        width: 500px;
         height: 100px;
         background: linear-gradient(90deg, #000 0% 20%, #ffd700 20% 90%, #415dff 90% 100%);
         border: none;
         position: relative;
-        color: white;
-        font-size: 2rem;
+        color: black;
         text-shadow:
-            2px 2px 0px black,
-            -2px -2px 0px black,
-            2px -2px 0px black,
-            -2px 2px 0px black;
+            2px 2px 0px rgb(255, 255, 255),
+            -2px -2px 0px rgb(255, 255, 255),
+            2px -2px 0px rgb(255, 255, 255),
+            -2px 2px 0px rgb(255, 255, 255);
+        font-size: 3rem;
         cursor: pointer;
         clip-path: polygon(3% 50%, 15% 0%, 100% 0%, 100% 100%, 15% 100%);
         border-top-right-radius: 35px;
@@ -125,26 +126,47 @@
             height: 100px;
             font-size: 3rem;
             padding-left: 5rem;
+            color: white;
+            text-shadow:
+                2px 2px 0px black,
+                -2px -2px 0px black,
+                2px -2px 0px black,
+                -2px 2px 0px black;
         }
     }
-
-
-
 
     .pencil-button:hover {
         transform: translateY(-8px);
         transform: rotate(5deg) scale(1.05);
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.7);
     }
+
+    .pdf-item {
+        margin-bottom: 8px;
+    }
+
+    .text-primary {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+    .text-primary:hover {
+        text-decoration: underline;
+    }
 </style>
 <main class="d-flex align-items-center justify-content-center bg-page5">
-    <div class="container d-flex align-items-center justify-content-center gap-4">
+    <div class="container d-flex flex-lg-row flex-column align-items-center justify-content-center gap-4">
         <div class="d-flex flex-column align-content-center justify-content-around gap-4">
-            <div class="pencil-button" onclick="changeContent('EGP')">ประกาศ EGP</div>
-            <div class="pencil-button" onclick="changeContent('จัดซื้อจัดจ้าง')">ประกาศจัดซื้อจัดจ้าง</div>
-            <div class="pencil-button" onclick="changeContent('ผลจัดซื้อจัดจ้าง')">ผลจัดซื้อจัดจ้าง</div>
-            <div class="pencil-button" onclick="changeContent('ราคากลาง')">ประกาศราคากลาง</div>
-            <div class="pencil-button" onclick="changeContent('เก็บรายได้')">งานเก็บรายได้</div>
+            <div class="pencil-button" onclick="changeContent('EGP', {{ json_encode($procurement) }})">ประกาศ EGP</div>
+            <div class="pencil-button" onclick="changeContent('จัดซื้อจัดจ้าง', {{ json_encode($procurement) }})">
+                ประกาศจัดซื้อจัดจ้าง</div>
+            <div class="pencil-button"
+                onclick="changeContent('ผลจัดซื้อจัดจ้าง', {{ json_encode($procurementResults) }})">ผลจัดซื้อจัดจ้าง
+            </div>
+            <div class="pencil-button" onclick="changeContent('ราคากลาง', {{ json_encode($average) }})">ประกาศราคากลาง
+            </div>
+            <div class="pencil-button" onclick="changeContent('เก็บรายได้', {{ json_encode($revenue) }})">งานเก็บรายได้
+            </div>
         </div>
         <div class="d-flex flex-column align-content-center justify-content-center border bg-view w-100">
             <div class="title-page5 font-sarabun-bold d-flex justify-content-center align-items-center" id="titlePage">
@@ -156,10 +178,11 @@
             </div>
         </div>
     </div>
+
 </main>
 
 <script>
-    function changeContent(topic) {
+    function changeContent(topic, data) {
         // เปลี่ยนหัวข้อ
         document.getElementById('titlePage').innerHTML = 'ประกาศ ' + topic;
 
@@ -167,29 +190,48 @@
         let contentArea = document.getElementById('contentArea');
         contentArea.innerHTML = ''; // ล้างเนื้อหาปัจจุบัน
 
-        // ลูปเพื่อแสดงข้อมูล 10 รายการ
-        for (let i = 1; i <= 10; i++) {
+        // ลูปข้อมูลจากตัวแปร data ที่ส่งมา
+        data.forEach(item => {
+            console.log(item);
+
             let newContent = document.createElement('div');
             newContent.className = 'card-view font-sarabun-bold';
 
+            // ตรวจสอบและวนลูปผ่าน pdfs เพื่อสร้างรายการ PDF
+            let pdfContent = '';
+            if (item.pdfs && item.pdfs.length > 0) {
+                pdfContent = item.pdfs.map(pdf => `
+            <div class="pdf-item ms-3">
+                <i class="fa-solid fa-file-pdf text-danger"></i>
+                <a href="{{ asset('storage/${pdf.post_pdf_file}') }}" target="_blank" class="text-primary">
+                            ${pdf.post_pdf_file.split('/').pop()}
+                        </a>
+            </div>
+        `).join(''); // รวม HTML ของ PDF แต่ละไฟล์
+            } else {
+                pdfContent = '<div class="text-danger">ไม่มีข้อมูล PDF</div>';
+            }
+
+            // สร้างเนื้อหาใหม่
             newContent.innerHTML = `
-              <div class="d-flex justify-content-between align-content-center">
-                  <div class="title text-truncate d-flex justify-content-start align-items-center">
-                      <img src="{{ asset('images/pages/5/arrow.png') }}" alt="arrow" width="25" height="25"> ${topic} Test ${i-3}
-                  </div>
-                  <div class="date pt-1"><i class="fa-solid fa-calendar-days text-warning"></i> 21/23/2000</div>
-              </div>
-              <div class="content text-truncate">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Id enim commodi eum delectus dicta consequuntur officiis quaerat quisquam quibusdam architecto.
-              </div>
-          `;
+        <div class="d-flex justify-content-between align-content-center">
+            <div class="title text-truncate d-flex justify-content-start align-items-center">
+                <img src="{{ asset('images/pages/5/arrow.png') }}" alt="arrow" width="25" height="25"> ${item.title_name}
+            </div>
+            <div class="date pt-1"><i class="fa-solid fa-calendar-days text-warning"></i> ${item.date}</div>
+        </div>
+        <div class="content">
+            ${pdfContent} <!-- แสดงรายการ PDF ที่มี -->
+        </div>
+    `;
 
             contentArea.appendChild(newContent); // เพิ่มเนื้อหาลงในส่วนที่แสดงผล
-        }
+        });
+
     }
 
     // เมื่อโหลดหน้าเว็บ เรียกฟังก์ชัน changeContent เพื่อเลือก "ประกาศ EGP"
     window.onload = function() {
-        changeContent('EGP');
+        changeContent('EGP', @json($procurement));
     }
 </script>

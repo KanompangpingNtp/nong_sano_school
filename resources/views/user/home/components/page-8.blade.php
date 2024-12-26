@@ -192,42 +192,42 @@
 
         <div class="row w-100 row-gap-4 d-flex justify-content-around align-items-center bg-white p-1 pt-3"
             style="border-radius: 10px;">
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="card-egiht bg-warning">
-                    <div class="card-egiht-image"></div>
-                    <div class="card-egiht-text">Card 1</div>
+
+            @php
+                $maxItems = 6; // จำนวนสูงสุดที่ต้องการ
+                $buildingSlice = $building->slice(0, $maxItems); // ตัดข้อมูลเป็นจำนวนที่ต้องการ
+                $remainingPlaceholders = $maxItems - $buildingSlice->count(); // คำนวณจำนวนที่เหลือ
+            @endphp
+
+            @foreach ($buildingSlice as $post)
+                <div class="col-12 col-md-6 col-lg-4">
+                    @php
+                        // เปลี่ยนสีพื้นหลังของ 3 อันแรก
+                        $bgColor = $loop->index < 3 ? 'rgb(233, 190, 82)' : 'rgb(56, 56, 213)';
+                    @endphp
+                    <div class="card-egiht " style="background-color:{{ $bgColor }};">
+                        @if ($post->photos->where('post_photo_status', 1)->isNotEmpty())
+                            <img src="{{ asset('storage/' . $post->photos->where('post_photo_status', 1)->first()->post_photo_file) }}"
+                                alt="Image" class="uniform-image card-egiht-image">
+                        @else
+                            <img src="https://via.placeholder.com/460x250" alt="Placeholder"
+                                class="uniform-image card-egiht-image">
+                        @endif
+                        <div class="card-egiht-text">{{ $post->topic_name }}</div>
+                    </div>
                 </div>
-            </div>
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="card-egiht bg-warning">
-                    <div class="card-egiht-image"></div>
-                    <div class="card-egiht-text">Card 2</div>
+            @endforeach
+
+            @for ($i = 0; $i < $remainingPlaceholders; $i++)
+                <!-- แสดง Placeholder สำหรับที่เหลือ -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card-egiht " style="background-color:rgb(56, 56, 213);">
+                        <img src="https://via.placeholder.com/460x250" alt="Placeholder"
+                            class="uniform-image card-egiht-image">
+                        <div class="card-egiht-text">Placeholder</div> <!-- ปรับให้แสดงข้อความว่า Placeholder -->
+                    </div>
                 </div>
-            </div>
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="card-egiht bg-warning">
-                    <div class="card-egiht-image"></div>
-                    <div class="card-egiht-text">Card 3</div>
-                </div>
-            </div>
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="card-egiht bg-primary">
-                    <div class="card-egiht-image"></div>
-                    <div class="card-egiht-text">Card 4</div>
-                </div>
-            </div>
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="card-egiht bg-primary">
-                    <div class="card-egiht-image"></div>
-                    <div class="card-egiht-text">Card 5</div>
-                </div>
-            </div>
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="card-egiht bg-primary">
-                    <div class="card-egiht-image"></div>
-                    <div class="card-egiht-text">Card 6</div>
-                </div>
-            </div>
+            @endfor
         </div>
         <div class="text-center mt-3 w-100 font-sarabun-bold">
             <button class="comic-button-eight w-100"><i class="fa-solid fa-up-right-from-square me-2"

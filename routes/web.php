@@ -24,7 +24,7 @@ use App\Http\Controllers\DataController;
 */
 
 Route::get('/', function () {
-    return view('user.data-school.emblem-school.index');
+    return view('user.activity.show-data.index');
 });
 
 Route::get('/home', [DataController::class, 'HomeIndex'])->name('HomeIndex');
