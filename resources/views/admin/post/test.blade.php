@@ -8,7 +8,7 @@
 </head>
 <body>
     {{-- ประชาสัมพันธ์ --}}
-    @foreach ($pressRelease as $post)
+    @foreach ($activity as $post)
     <br>
     <p>id : {{ $post->id }}</p>
     <p>วันที่ : {{ $post->title_name }}</p>
