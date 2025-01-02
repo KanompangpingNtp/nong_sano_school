@@ -77,23 +77,20 @@
                 <!-- Carousel Section -->
                 <div id="carouselExampleIndicators" class="carousel slide">
                     <div class="carousel-indicators">
-                        @php
-                            $numOfImages = 5; // กำหนดจำนวนภาพ
-                        @endphp
-                        @for ($i = 0; $i < $numOfImages; $i++)
+                        @foreach ($classroom->photos as $index => $photo)
                             <button type="button" data-bs-target="#carouselExampleIndicators"
-                                data-bs-slide-to="{{ $i }}" class="{{ $i === 0 ? 'active' : '' }}"
-                                aria-current="{{ $i === 0 ? 'true' : 'false' }}"
-                                aria-label="Slide {{ $i + 1 }}"></button>
-                        @endfor
+                                data-bs-slide-to="{{ $index }}" class="{{ $index === 0 ? 'active' : '' }}"
+                                aria-current="{{ $index === 0 ? 'true' : 'false' }}"
+                                aria-label="Slide {{ $index + 1 }}"></button>
+                        @endforeach
                     </div>
                     <div class="carousel-inner">
-                        @for ($i = 1; $i <= $numOfImages; $i++)
-                            <div class="carousel-item {{ $i === 1 ? 'active' : '' }}">
-                                <img src="https://via.placeholder.com/800x400.png?text=Image+{{ $i }}"
-                                    class="d-block w-100" alt="Image {{ $i }}">
+                        @foreach ($classroom->photos as $index => $photo)
+                            <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                                <img src="{{ asset('storage/' . $photo->post_photo_file) }}"
+                                    class="d-block w-100" alt="Image {{ $index + 1 }}">
                             </div>
-                        @endfor
+                        @endforeach
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
                         data-bs-slide="prev">
@@ -117,12 +114,12 @@
                                 เนื้อหา
                             </button>
                         </li>
-                        <li class="nav-item" role="presentation">
+                        {{-- <li class="nav-item" role="presentation">
                             <button class="nav-link" id="tab2-tab" data-bs-toggle="tab" data-bs-target="#tab2-content"
                                 type="button" role="tab" aria-controls="tab2-content" aria-selected="false">
                                 PDF
                             </button>
-                        </li>
+                        </li> --}}
                     </ul>
 
                     <!-- Tab Content -->
@@ -132,26 +129,20 @@
                             <div class="p-4 card-text">
                                 <h2 class="fs-1 font-sarabun-bold">เนื้อหา</h2>
                                 <p class="fs-4">
-                                    เนื้อหาในหัวข้อที่ 1: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci
-                                    corrupti,
-                                    nulla voluptatum sequi veniam rem dicta eaque. Veritatis repellat, ex suscipit dolore
-                                    doloribus iusto
-                                    quidem!
+                                    {{$classroom->details}}
                                 </p>
                             </div>
                         </div>
 
-                        <!-- Tab 2 Content -->
+                        {{-- <!-- Tab 2 Content -->
                         <div class="tab-pane fade" id="tab2-content" role="tabpanel" aria-labelledby="tab2-tab">
                             <div class="p-4 card-text">
                                 <h2 class="fs-1 font-sarabun-bold">PDF</h2>
                                 <p class="fs-4">
-                                    เนื้อหาในหัวข้อที่ 2: Quisquam quos alias eius, asperiores ad autem deserunt voluptates,
-                                    corporis,
-                                    reiciendis id. Doloremque praesentium, velit distinctio minima sequi consectetur maxime!
+                                    <embed src="{{ asset('storage/' . $classroom->pdfs->first()->post_pdf_file) }}" width="100%" height="600px" type="application/pdf">
                                 </p>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>

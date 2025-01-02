@@ -7,7 +7,6 @@ use App\Models\PostDetail;
 
 class DataController extends Controller
 {
-    //
     public function HomeIndex()
     {
         //ข่าวประชาสัมพันธ์

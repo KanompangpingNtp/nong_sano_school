@@ -204,8 +204,11 @@
 
         <!-- ส่วนที่ 3 -->
         <div class="flex-fill d-flex justify-content-center align-items-end h-100 pb-4 d-none d-lg-flex ">
-            <button class="btn-yellow font-sarabun-bold"> <i class="fas fa-sign-in-alt" style="font-size: 18px;"></i>
-                เข้าสู่ระบบ</button>
+            {{-- <a href="{{route('showLoginForm')}}" class="btn-yellow font-sarabun-bold"> <i class="fas fa-sign-in-alt" style="font-size: 18px; text-decoration: none;"></i>
+                เข้าสู่ระบบ</a> --}}
+                <a href="{{ route('showLoginForm') }}" class="btn-yellow font-sarabun-bold" style="text-decoration: none;">
+                    <i class="fas fa-sign-in-alt" style="font-size: 18px;"></i> เข้าสู่ระบบ
+                </a>
         </div>
     </div>
 </header>

@@ -243,20 +243,6 @@
                 <a class="nav-link font-sarabun-bold toggle-collapse" href="{{ route('ActivityHome') }}">
                     จัดการกิจกรรม
                 </a>
-
-                {{-- <a class="nav-link font-sarabun-bold toggle-collapse" href="{{ route('ProcurementHome') }}">
-                ประกาศจัดซื้อจัดจ้าง
-                </a>
-                <a class="nav-link font-sarabun-bold toggle-collapse" href="{{ route('ProcurementResultsHome') }}">
-                    ผลจัดซื้อจัดจ้าง
-                </a>
-                <a class="nav-link font-sarabun-bold toggle-collapse" href="{{ route('AveragePriceHome')}}">
-                    ประกาศราคากลาง
-                </a>
-                <a class="nav-link font-sarabun-bold toggle-collapse" href="{{ route('RevenueHome')}}">
-                    งานเก็บรายได้
-                </a> --}}
-
                 <a class="nav-link font-sarabun-bold toggle-collapse" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#moreOptions1">
                     จักการประกาศ
                 </a>
@@ -271,8 +257,7 @@
                         <a class="nav-link" href="{{ route('AveragePriceHome')}}"><i class="fa-solid fa-caret-right"></i>ประกาศราคากลาง</a>
                     </div>
                     <div class="nav-item">
-                        <a class="nav-link" href="{{ route('RevenueHome')}}"><i class="fa-solid fa-caret-right"></i>จัดการอาคาร
-                            และสถานทื่</a>
+                        <a class="nav-link" href="{{ route('RevenueHome')}}"><i class="fa-solid fa-caret-right"></i>งานเก็บรายได้</a>
                     </div>
                 </div>
                 <a class="nav-link font-sarabun-bold toggle-collapse" href="{{route('ClassRoomHome')}}">
@@ -304,7 +289,7 @@
                 @if (Auth::check())
                 <div class="dropdown ms-auto">
                     <button class="btn btn-outline-primary dropdown-toggle" type="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fa-solid fa-user"></i> {{ Auth::user()->name }}
+                        <i class="fa-solid fa-user"></i> {{ Auth::user()->full_name }}
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
                         <li>
