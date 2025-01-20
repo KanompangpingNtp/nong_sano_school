@@ -20,32 +20,32 @@
                     <div class="mb-3">
                         <input type="hidden" name="post_type_id" value="{{ $postTypes->firstWhere('type_name', 'กิจกรรม')->id }}">
                         <label for="date" class="form-label">วันที่</label>
-                        <input type="date" class="form-control" id="date" name="date">
+                        <input type="date" class="form-control" id="date" name="date" required>
                     </div>
 
                     <div class="mb-3">
                         <label for="title_name" class="form-label">ชื่อเรื่อง</label>
-                        <input type="text" class="form-control" id="title_name" name="title_name">
+                        <input type="text" class="form-control" id="title_name" name="title_name" required>
                     </div>
 
                     <div class="mb-3">
                         <label for="topic_name" class="form-label">หัวข้อ</label>
-                        <input type="text" class="form-control" id="topic_name" name="topic_name">
+                        <input type="text" class="form-control" id="topic_name" name="topic_name" required>
                     </div>
 
                     <div class="mb-3">
                         <label for="details" class="form-label">รายละเอียด</label>
-                        <input type="text" class="form-control" id="details" name="details">
+                        <input type="text" class="form-control" id="details" name="details" required>
                     </div>
 
                     <div class="mb-3">
                         <label for="title_image" class="form-label">รูปหัวข้อ</label>
-                        <input type="file" class="form-control" id="title_image[]" name="title_image">
+                        <input type="file" class="form-control" id="title_image[]" name="title_image" required>
                     </div>
 
                     <div class="mb-3">
                         <label for="file_post" class="form-label">แนบไฟล์ภาพและPDF</label>
-                        <input type="file" class="form-control" id="file_post" name="file_post[]" multiple>
+                        <input type="file" class="form-control" id="file_post" name="file_post[]" multiple required>
                         <small class="text-muted">ประเภทไฟล์ที่รองรับ: jpg, jpeg, png, pdf (ขนาดไม่เกิน 10MB)</small>
                         <!-- แสดงรายการไฟล์ที่แนบ -->
                         <div id="file-list" class="mt-1">
