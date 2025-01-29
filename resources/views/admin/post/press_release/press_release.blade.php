@@ -47,7 +47,7 @@
 
                     <div class="mb-3">
                         <label for="file_post" class="form-label">แนบไฟล์ภาพและ PDF</label>
-                        <input type="file" class="form-control" id="file_post" name="file_post[]" multiple>
+                        <input type="file" class="form-control" id="file_post" name="file_post[]" multiple required>
                         <small class="text-muted">ประเภทไฟล์ที่รองรับ: jpg, jpeg, png, pdf (ขนาดไม่เกิน 10MB)</small>
                         <!-- แสดงรายการไฟล์ที่แนบ -->
                         <div id="file-list" class="mt-1">
