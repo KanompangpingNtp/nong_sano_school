@@ -6,7 +6,7 @@
         background-repeat: no-repeat;
         min-height: 100vh;
         /* ทำให้พื้นที่ขยายตามเนื้อหา */
-        padding-bottom: 8rem;
+        padding-bottom: 3rem;
         /* กันไม่ให้ขอบติดด้านล่าง */
     }
 
@@ -95,12 +95,11 @@
         /* ความสูงของ card */
         background-color: #fff;
         border-radius: 15px;
-        padding: 10px 10px 10px;
+        padding: 10px 10px;
         /* เพิ่ม padding ด้านบนเพื่อให้ pin อยู่ด้านบน */
         box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
         display: flex;
         flex-direction: column;
-        margin-bottom: 1rem;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
         cursor: pointer;
     }
@@ -120,7 +119,7 @@
         border-radius: 15px;
         margin-top: 10px;
         margin-bottom: 10px;
-        height: 250px;
+        height: 220px;
         /* ความสูงของรูปภาพ */
     }
 
@@ -132,7 +131,7 @@
         font-size: 30px;
         border-radius: 15px;
         color: #333;
-        padding: 10px;
+        padding: 2px 10px;
 
         /* ตัดข้อความเมื่อเกิน 2 บรรทัด */
         width: 100%;
@@ -195,28 +194,19 @@
         </div>
         <div class="row w-100 row-gap-4 d-flex justify-content-around align-items-center">
             @php
-                $maxItems = 6; // จำนวนสูงสุดที่ต้องการ
+                $maxItems = 12; // จำนวนสูงสุดที่ต้องการ
                 $activitySlice = $activity->slice(0, $maxItems); // ตัดข้อมูลเป็นจำนวนที่ต้องการ
                 $remainingPlaceholders = $maxItems - $activitySlice->count(); // คำนวณจำนวนที่เหลือ
             @endphp
 
             @foreach ($classroom as $post)
-                <div class="col-12 col-md-6 col-lg-4">
-                    @php
-                        // เปลี่ยนสีพื้นหลังของ 3 อันแรก
-                        $bgColor = $loop->index < 3 ? 'rgb(233, 190, 82)' : 'rgb(56, 56, 213)';
-                    @endphp
+                @php
+                    // กำหนดสีสลับกัน
+                    $colors = ['rgb(233, 190, 82)', 'rgb(56, 56, 213)']; // สี A และสี B
+                    $bgColor = $colors[$loop->index % count($colors)]; // สลับสีตามลำดับ
+                @endphp
 
-                    {{-- <div class="card-seven" style="background-color:{{ $bgColor }};">
-                        @if ($post->photos->where('post_photo_status', 1)->isNotEmpty())
-                            <img src="{{ asset('storage/' . $post->photos->where('post_photo_status', 1)->first()->post_photo_file) }}"
-                                alt="Image" class="uniform-image card-seven-image">
-                        @else
-                            <img src="https://via.placeholder.com/460x250" alt="Placeholder"
-                                class="uniform-image card-seven-image">
-                        @endif
-                        <div class="card-seven-text">{{ $post->title_name }}</div>
-                    </div> --}}
+                <div class="col-12 col-md-6 col-lg-3">
                     <div class="card-seven" style="background-color:{{ $bgColor }};">
                         <a href="{{ route('ClassRoomShowDetails', $post->id) }}" class="text-decoration-none">
                             @if ($post->photos->where('post_photo_status', 1)->isNotEmpty())
@@ -234,10 +224,11 @@
             @for ($i = 0; $i < $remainingPlaceholders; $i++)
                 @php
                     // คำนวณสีพื้นหลังที่ใช้ โดยนับต่อจากข้อมูลที่มีอยู่แล้ว
-                    $bgColor = $activitySlice->count() + $i < 3 ? 'rgb(233, 190, 82)' : 'rgb(56, 56, 213)';
+                    $colors = ['rgb(233, 190, 82)', 'rgb(56, 56, 213)']; // สี A และสี B
+                    $bgColor = $colors[($activitySlice->count() + $i) % count($colors)]; // สลับสีตามลำดับ
                 @endphp
                 <!-- แสดง Placeholder สำหรับที่เหลือ -->
-                <div class="col-12 col-md-6 col-lg-4">
+                <div class="col-12 col-md-6 col-lg-3">
                     <div class="card-seven" style="background-color:{{ $bgColor }};">
                         <img src="https://via.placeholder.com/460x250" alt="Placeholder"
                             class="uniform-image card-seven-image">
@@ -245,14 +236,12 @@
                     </div>
                 </div>
             @endfor
-
         </div>
 
-        <div class="text-center mt-3 w-100 px-3 font-sarabun-bold">
+        {{-- <div class="text-center mt-3 w-100 px-3 font-sarabun-bold">
             <a href="{{route('ClassRoomShowData')}}" class="comic-button-seven w-100"><i class="fa-solid fa-up-right-from-square me-2"
                     style="font-size:20px;"></i>
                 ดูทั้งหมด</a>
-        </div>
+        </div> --}}
     </div>
-
 </main>

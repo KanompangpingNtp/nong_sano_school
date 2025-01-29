@@ -95,7 +95,7 @@
     </div>
 
     <!-- ส่วนแสดงจำนวนผู้เข้าชมด้านล่าง -->
-    <div class="container number-visitor d-flex flex-column flex-lg-row justify-content-around align-items-center d-none d-lg-flex"
+    <div class="container number-visitor d-flex flex-column flex-lg-row justify-content-around align-items-center d-none d-lg-flex lh-1"
         style="margin-top: 10rem;">
         <div class="pe-4 border-start-s">
             จำนวนผู้เข้าชมเว็บไซต์ <br>

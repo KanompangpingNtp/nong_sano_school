@@ -6,7 +6,7 @@
         background-repeat: no-repeat;
         min-height: 100vh;
         /* ทำให้พื้นที่ขยายตามเนื้อหา */
-        padding-bottom: 8rem;
+        padding-bottom: 3rem;
         /* กันไม่ให้ขอบติดด้านล่าง */
     }
 
@@ -185,7 +185,7 @@
         <div class="d-flex justify-content-center align-items-center font-sarabun-bold d-flex-equal-height"
             style=" margin-top:3rem;">
             <img src="{{ asset('images/pages/8/school.png') }}" alt="school" class="school-left pb-3 d-none d-md-block">
-            <div class="title-page7">อาคารสถานที่</div>
+            <div class="title-page8">อาคารสถานที่</div>
             <img src="{{ asset('images/pages/8/school.png') }}" alt="school"
                 class="school-right pb-3 d-none d-md-block">
         </div>
@@ -215,15 +215,15 @@
                         @endif
                         <div class="card-egiht-text">{{ $post->topic_name }}</div>
                     </div> --}}
-                    <div class="card-seven" style="background-color:{{ $bgColor }};">
+                    <div class="card-egiht" style="background-color:{{ $bgColor }};">
                         <a href="{{ route('BuildingShowDetails', $post->id) }}" class="text-decoration-none">
                             @if ($post->photos->where('post_photo_status', 1)->isNotEmpty())
                                 <img src="{{ asset('storage/' . $post->photos->where('post_photo_status', 1)->first()->post_photo_file) }}"
-                                    alt="Image" class="uniform-image card-seven-image">
+                                    alt="Image" class="uniform-image card-egiht-image">
                             @else
-                                <img src="https://via.placeholder.com/460x250" alt="Placeholder" class="uniform-image card-seven-image">
+                                <img src="https://via.placeholder.com/460x250" alt="Placeholder" class="uniform-image card-egiht-image">
                             @endif
-                            <div class="card-seven-text">{{ $post->topic_name }}</div>
+                            <div class="card-egiht-text">{{ $post->topic_name }}</div>
                         </a>
                     </div>
 
@@ -241,10 +241,10 @@
                 </div>
             @endfor
         </div>
-        <div class="text-center mt-3 w-100 font-sarabun-bold">
+        {{-- <div class="text-center mt-3 w-100 font-sarabun-bold">
             <a href="{{route('BuildingShowData')}}" class="comic-button-eight w-100"><i class="fa-solid fa-up-right-from-square me-2"
                     style="font-size:20px;"></i>
                 ดูทั้งหมด</a>
-        </div>
+        </div> --}}
     </div>
 </main>
